@@ -1,0 +1,28 @@
+{
+  "name": "gig.ly",
+  "version": "1.0.0",
+  "description": "job planning application",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jthomasi/gig.ly.git"
+  },
+  "keywords": [
+    "scheduling"
+  ],
+  "author": "jt, af, mj, jw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jthomasi/gig.ly/issues"
+  },
+  "homepage": "https://github.com/jthomasi/gig.ly#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4"
+  }
+}
