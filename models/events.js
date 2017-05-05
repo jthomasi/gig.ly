@@ -8,14 +8,14 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 100]
       }
     },
-    where: {
+    location: {
       type : DataTypes.TEXT,
       allowNull: false,
       validate: {
         len: [1, 100]
       }
     }, 
-    key: {
+    key_code: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -32,10 +32,10 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: {
               allowNull: false
             }
-          });
+          }),
           Event.hasMany(models.Job, {
             onDelete: "cascade"
-          });
+          })
         }
       }
     }
