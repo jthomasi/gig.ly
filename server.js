@@ -47,9 +47,12 @@ app.use(express.static("./public"));
 // =============================================================
 // var routes = require("./controllers/burgerController.js");
 
-// app.use("/", routes);
+// Routes
 
-
+require("./routes/html-routes.js")(app);
+require("./routes/admins-api-routes.js")(app);
+require("./routes/events-api-routes.js")(app);
+require("./routes/jobs-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our express app
 // =============================================================

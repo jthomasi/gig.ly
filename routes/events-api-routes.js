@@ -4,6 +4,7 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
+
   // POST route for creating a new job
   app.post("/api/jobs", function(req, res) {
     db.Job.create(req.body).then(function(dbJob) {
