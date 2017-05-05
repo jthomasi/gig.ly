@@ -12,10 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       len: [1, 100]
     },
-    cellPhone: {
-      type: DataTypes.INTEGER,
+    cell_phone: {
+      type: DataTypes.STRING,
       allowNull: false,
-      len: [10, 10]
+      len: [10, 13]
     },
     password: {
       type: DataTypes.STRING,
