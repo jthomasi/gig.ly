@@ -49,7 +49,10 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: {
               allowNull: false
             }
-          });
+          }), 
+          Job.belongsTo(models.Worker, {
+            onDelete: "cascade"
+          });;
         }
       }
     }
