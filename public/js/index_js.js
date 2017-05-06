@@ -1,5 +1,17 @@
 $(document).ready(function(){
 
+	$(".create-admin").click(function(){
+		$(".createAdmin").fadeToggle("fast", "linear");
+	});
+
+		$(".login-admin").click(function(){
+		$(".loginAdmin").fadeToggle("fast", "linear");
+	});
+
+		$(".access-key").click(function(){
+		$(".accessKey").fadeToggle("fast", "linear");
+	});
+
 	$("#createAdmin").on("click", function(event){
 
 		event.preventDefault();

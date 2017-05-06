@@ -4,107 +4,123 @@
 		<meta charset="UTF-8">
 		<title>gig.ly</title>
 		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
 		<link rel="stylesheet" href="assets/bulma.css">
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+		<!-- 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 	</head>
 	<body>
-		<section class="hero">
+		<!-- 	Main page content 	-->
+		<section class="hero is-dark">
 			<div class="hero-body">
 				<div class="container">
-					<h1>Gig.ly</h1>
+					<h1 class="title">Gig.ly</h1>
 					<h2 class="subtitle">
 					Subtitle placeholder
 					</h2>
 				</div>
 			</div>
 		</section>
-		<section class="content">
+		<div class="content">
 			<div class="container">
-				<button class="btn btn-primary" data-toggle="modal" data-target=".createAdmin">Create Admin</button>
-				<button class="btn btn-primary" data-toggle="modal" data-target=".loginAdmin">Login Admin</button><br><br>
-				<div class="modal createAdmin" tabindex="-1" role="dialog" aria-labelledby="createAdminModelLabel" aria-hidden="true">
-					<div class="modal-dialog modal-md">
+				<button class="button is-dark create-admin">Create Admin</button>
+				<button class="button is-dark login-admin">Login Admin</button><br><br>
+
+
+				<!-- Admin registration modal -->
+				<div class="modal createAdmin">
+					<div class="modal-card">
 						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Create Admin Account</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form id="adminInfoForm">
-									<div class="form-group">
-										Name:
-										<input type="text" id="newAdminName" name="newAdminName" placeholder="Admin Name"><br>
-										Email:
-										<input type="text" id="newAdminEmail" name="newAdminEmail" placeholder="Admin Email"><br>
-										Username:
-										<input type="text" id="newAdminUsername" name="newAdminUsername" placeholder="Username"><br>
-										Password:
-										<input type="text" id="newAdminPassword" name="newAdminPassword" placeholder="Admin Password">
-									</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="button" id="createAdmin" class="btn btn-primary submit">Create</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal loginAdmin" tabindex="-1" role="dialog" aria-labelledby="loginAdminModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-md">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Admin Login</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form id="adminLoginForm">
-									Email:
-									<input type="text" id="adminLoginEmail" name="adminEmail" placeholder="Admin Email"><br>
-									Password:
-									<input type="text" id="adminLoginPassword" name="adminPassword" placeholder="Admin Password">
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="button" id="loginAdmin" class="btn btn-primary">Login</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container">
-					
-					<button class="btn btn-primary" id="submitKey" data-toggle="modal" data-target=".accessKey">Submit Key</button>
-					<input type="text" name="key" id="key">
-				</div>
-				<div class="modal accessKey" tabindex="-1" role="dialog" aria-labelledby="accessKeyModelLabel" aria-hidden="true">
-					<div class="modal-dialog modal-md">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Event Information</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
+							<div class="modal-card-head">
+								<header class="modal-card-title">Create Admin Account
+								</header>
 								
 							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Accept!</button>
+						</div>
+						<section class="modal-card-body">
+							<form id="adminInfoForm">
+								<div class="field">
+									<label class="label">Name</label>
+									<p class="control">
+										<input class="input" type="text">
+									</p>
+									<label class="label">Email</label>
+									<p class="control">
+										<input class="input" type="email">
+									</p>
+									<label class="label">Password</label>
+									<p class="control">
+										<input class="input" type="password">
+									</p>
+								</div>
+							</form>
+						</section>
+						<div class="modal-card-foot">
+							<a type="button" class="button is-dark create-admin">Cancel</a>
+							<a type="button" id="createAdmin" class="button is-primary submit">Create</a>
+						</div>
+					</div>
+					
+				</div>
+
+				<!-- Admin login modal -->
+				<div class="modal loginAdmin" tabindex="-1" role="dialog" aria-labelledby="loginAdminModalLabel" aria-hidden="true">
+					<div class="modal-card">
+						<div class="modal-content">
+							<div class="modal-card-head">
+								<h5 class="modal-card-title" id="exampleModalLabel">Admin Login</h5>
+								<button type="button" class="login-admin">
+								</button>
+							</div>
+							<div class="modal-card-body">
+								
+								<form id="adminLoginForm">
+									<div class="field">
+										<label class="label">Email</label>
+										<p class="control">
+											<input class="input" name="adminEmail" type="email">
+										</p>
+										<label class="label">Password</label>
+										<p class="control">
+											<input class="input" name="adminPassword" type="password">
+										</p>
+									</div>
+								</form>
+								
+							</div>
+							<div class="modal-card-foot">
+								<a class="button is-dark login-admin">Close</a>
+								<a id="loginAdmin" class="button is-dark">Login</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-		<script src="index.js"></script>
+		</div>
+
+		<!-- Access key entry for workers -->
+		<div class="container">
+			<button class="button is-dark access-key" id="submitKey">Submit Key</button>
+			<input type="text" name="key" id="key">
+			<div class="modal">
+			<div class="modal-card">
+				<div class="modal-content">
+					<div class="modal-card-header">
+						<h5 class="modal-card-title" id="exampleModalLabel">Event Information</h5>
+					</div>
+					<div class="modal-card-body">
+						</div>
+						<div class="modal-card-foot">
+							<button type="button" class="button is-dark access-key">Cancel</button>
+							<button type="button" class="button is-dark">Accept!</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/index_js.js"></script>
 	</body>
 </html>
