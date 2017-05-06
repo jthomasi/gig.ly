@@ -46,10 +46,20 @@ $(document).ready(function(){
 		startString += '-';
 		startString += gigDay;
 		startString += 'T';
-		startString += gigHourStart;
-		startString += ':';
-		startString += gigMinuteStart;
-		startString += ':00';
+		startString += '02:30:00';
+		//gigHourStart;
+		//will have to be ...
+		/*if ($("#startTime").val()[1] === ":") {
+			startString += '0';
+			startString += $("#startTime").val()[0];
+		}
+		else {
+			startString += $("#startTime").val()[0];
+			startString += $("#startTime").val()[1];
+		}*/
+		// startString += ':';
+		// startString += gigMinuteStart;
+		// startString += ':00';
 		console.log(startString);
 		console.log(gigHourStart);
 		//gigYearStart + "-" + gigMonthStart + "-" gigDayStart + "T" + gigHourStart + ":" + gigMinuteStart + ":" + gigSecondStart;
