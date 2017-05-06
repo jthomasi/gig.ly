@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 100]
       }
     },
-    where: {
+    location: {
       type : DataTypes.TEXT,
       allowNull: false,
       validate: {
@@ -29,9 +29,9 @@ module.exports = function(sequelize, DataTypes) {
           Event.hasMany(models.Job, {
             onDelete: "cascade"
           });
+          
         }
       }
-    }
-  );
+  });
   return Event;
 };

@@ -12,10 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       len: [1, 100]
     },
-    cellPhone: {
+    cellphone: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      len: [10, 10]
+      len: [1, 10]
     },
     password: {
       type: DataTypes.STRING,
@@ -24,10 +24,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   },
     {
-      // We're saying that we want our Author to have Posts
+      // We're saying that we want our Admins to have Events
       classMethods: {
         associate: function(models) {
-          // An Author (foreignKey) is required or a Post can't be made
           Admin.hasMany(models.Event, {
             onDelete: "cascade"
           });

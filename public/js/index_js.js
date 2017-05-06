@@ -6,11 +6,13 @@ $(document).ready(function(){
 
 		var newName = $("#newAdminName").val().trim();
 		var newEmail = $("#newAdminEmail").val().trim();
+		var newPhone = $("#newAdminPhone").val().trim();
 		var newPassword = $("#newAdminPassword").val().trim();
 
 		var newAdmin = {
 			name: newName,
 			email: newEmail,
+			cellphone: newPhone,
 			password: newPassword
 		}
 
@@ -58,20 +60,16 @@ $(document).ready(function(){
 
 		var key = $("#keyValue").val().trim();
 
-		var accessKey = {
-			key: key
-		};
-
-		var url = window.location.href;
-		console.log(accessKey);
+		console.log(key);
 
 		$.ajax({
-	        method: "POST",
-	        url: "/api/admins",
-	        data: accessKey
+	        method: "GET",
+	        url: "/api/events/:"+key,
+	        data: key
 	    })
-	    .done(function() {
+	    .done(function(data) {
 	        console.log("yay");
+	        console.log(data);
 	    });
 
 	})
