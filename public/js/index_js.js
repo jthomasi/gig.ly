@@ -14,11 +14,17 @@ $(document).ready(function(){
 
 		var newName = $("#newAdminName").val().trim();
 		var newEmail = $("#newAdminEmail").val().trim();
+		var newPhone = $("#newAdminPhone").val().trim();
+        newPhone = newPhone.replace(/\D+/g, "");
+        console.log(newPhone);
+
+
 		var newPassword = $("#newAdminPassword").val().trim();
 
 		var newAdmin = {
 			name: newName,
 			email: newEmail,
+			cellphone: newPhone,
 			password: newPassword
 		}
 
@@ -31,6 +37,10 @@ $(document).ready(function(){
 	    })
 	    .done(function(data) {
 	        console.log(data);
+	        $("#newAdminName").val("");
+	        $("#newAdminEmail").val("");
+	        $("#newAdminPhone").val("");
+	        $("#newAdminPassword").val("");
 	    });
 
 	});
@@ -38,7 +48,7 @@ $(document).ready(function(){
 	$("#loginAdmin").on("click", function(event){
 
 		event.preventDefault();
-
+		$(".password-validation").empty();
 		var loginEmail = $("#adminLoginEmail").val().trim();
 		var loginPassword = $("#adminLoginPassword").val().trim();
 
@@ -47,15 +57,12 @@ $(document).ready(function(){
 			password: loginPassword
 		}
 
-		console.log(loginAdmin);
-
 		$.ajax({
-	        method: "POST",
-	        url: "/api/admins",
-	        data: loginAdmin
+	        method: "GET",
+	        url: "/api/admins/" + loginEmail,
 	    })
-	    .done(function() {
-	        window.location.href = "/admin";
+	    .done(function(data) {
+	    	validatePassword(data, loginPassword);
 	    });
 
 	});
@@ -66,22 +73,30 @@ $(document).ready(function(){
 
 		var key = $("#keyValue").val().trim();
 
-		var accessKey = {
-			key: key
-		};
-
-		var url = window.location.href;
-		console.log(accessKey);
+		console.log(key);
 
 		$.ajax({
-	        method: "POST",
-	        url: "/api/admins",
-	        data: accessKey
+	        method: "GET",
+	        url: "/api/events/"+key,
+	        data: key
 	    })
-	    .done(function() {
+	    .done(function(data) {
 	        console.log("yay");
+	        console.log(data);
 	    });
 
 	})
 
+
+
+	function validatePassword(data, loginPassword) {
+		console.log(data);
+		console.log(loginPassword);
+    	if (data.password === loginPassword) {
+    		window.location.href = "/admin";
+    	} else {
+    		$(".password-validation").append("<div>Invalid username or password</div>");
+        	$("#adminLoginPassword").val("");
+    	}
+	}
 });

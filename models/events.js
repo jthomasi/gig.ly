@@ -15,12 +15,10 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 100]
       }
     }, 
-    key_code: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [5, 10]
-      }
+
+    event_date: {
+      type: DataTypes.DATE, 
+      allowNull: false
     }
   },
     // Here we'll pass a second "classMethods" object into the define method
@@ -35,10 +33,10 @@ module.exports = function(sequelize, DataTypes) {
           }),
           Event.hasMany(models.Job, {
             onDelete: "cascade"
-          })
+          });
+
         }
       }
-    }
-  );
+  });
   return Event;
 };
