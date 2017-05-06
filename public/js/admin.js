@@ -9,7 +9,7 @@ $(document).ready(function(){
 	//local storage to test
 	var gigArray  = [
 		        {
-		            title  : "newGig.gigName",
+		            title  : "Test Gig",
 		            start  : '2017-05-05T12:30:00',
 		            //end	: '2017-05-09T14:30:00',
 		            allDay : false // will make the time show
@@ -24,14 +24,14 @@ $(document).ready(function(){
 
 		var gigName = $("#gigName").val().trim();
 		var gigLocation = $("#gigLocation").val().trim();
-		var gigDate = $("#gigDate").val().trim();
+		//var gigDate = $("#gigDate").val().trim();
 		//will need to separate into:
-		// var gigYearStart = $("#gigYear")
-		// var gigMonthStart =
-		// var gigDayStart = 
-		// var gigHourStart = 
-		// var gigMinuteStart =
-		// var gigSecondStart =
+		var gigYearStart = $("#gigYearStart");
+		var gigMonthStart = $("#gigMonthStart");
+		var gigDayStart = $("#gigDayStart");
+		var gigHourStart = $("#gigHoursStart");
+		var gigMinuteStart = $("#gigMinuteStart");
+		var gigSecondStart = $("#gigSecondStart");
 		// var gigYearEnd = $("#gigYear")
 		// var gigMonthEnd =
 		// var gigDayEnd = 
@@ -41,7 +41,16 @@ $(document).ready(function(){
 		var TESTgigHours = $("#gigHours").val().trim();
 		var gigText = $("#gigText").val().trim();
 
-		//so i.e. start: gigYearStart + "-" + gigMonthStart + "-" gigDayStart + "T" + gigHourStart + ":" + gigMinuteStart + ":" + gigSecondStart
+		//so i.e. 
+		var startString = '';
+		startString += 5;
+		startString += '-';
+		startString += 3;
+		startString += '-';
+		console.log(startString);
+		//gigYearStart + "-" + gigMonthStart + "-" gigDayStart + "T" + gigHourStart + ":" + gigMinuteStart + ":" + gigSecondStart;
+
+
 		var newGig = {
 			title: gigName,
 			//location: gigLocation,
