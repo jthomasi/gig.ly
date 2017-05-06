@@ -26,9 +26,9 @@ $(document).ready(function(){
 		var gigLocation = $("#gigLocation").val().trim();
 		//var gigDate = $("#gigDate").val().trim();
 		//will need to separate into:
-		var gigYearStart = $("#gigYearStart");
-		var gigMonthStart = $("#gigMonthStart");
-		var gigDayStart = $("#gigDayStart");
+		var gigYear = $("#datepicker").val()[6] + $("#datepicker").val()[7] + $("#datepicker").val()[8] + $("#datepicker").val()[9];
+		var gigMonth = $("#datepicker").val()[0] + $("#datepicker").val()[1];
+		var gigDay = $("#datepicker").val()[3] + $("#datepicker").val()[4];
 		var gigHourStart = $("#gigHoursStart");
 		var gigMinuteStart = $("#gigMinuteStart");
 		var gigSecondStart = $("#gigSecondStart");
@@ -43,10 +43,11 @@ $(document).ready(function(){
 
 		//so i.e. 
 		var startString = '';
-		startString += 5;
+		startString += gigYear;
 		startString += '-';
-		startString += 3;
+		startString += gigMonth;
 		startString += '-';
+		startString += gigDay;
 		console.log(startString);
 		//gigYearStart + "-" + gigMonthStart + "-" gigDayStart + "T" + gigHourStart + ":" + gigMinuteStart + ":" + gigSecondStart;
 
@@ -54,7 +55,7 @@ $(document).ready(function(){
 		var newGig = {
 			title: gigName,
 			//location: gigLocation,
-			start: '2017-05-07T12:30:00',
+			start: startString,
 			//hours: gigHours,
 			//text: gigText
 			allDay: false
