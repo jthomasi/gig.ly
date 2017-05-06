@@ -3,15 +3,116 @@
 <head>
 
 	<meta charset="UTF-8">
+
 	<title>gig.ly - Admins</title>
+
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+	<link rel='stylesheet' href='assets/fullcalendar/fullcalendar.css' />
+	<link rel ='stylesheet' href = 'assets/admin.css'>
+	<script src='assets/lib/moment.js'></script>
+	<script src='assets/fullcalendar/fullcalendar.js'></script>
+
+
 </head>
 <body>
+
+
+	<h1>Gig.ly Admin Event Page</h1><br>
+
+	<button class="btn btn-primary" id = "gigButt"data-toggle="modal" data-target=".createGig">Create Gig</button>
+
+	<!--<button class="btn btn-primary" data-toggle="modal" data-target=".loginAdmin">Login Admin</button><br><br>-->
+
+	<div class="modal createGig" tabindex="-1" role="dialog" aria-labelledby="createGigModelLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-md">
+	        <div class="modal-content">
+	    	    <div class="modal-header">
+		            <h5 class="modal-title" id="exampleModalLabel">Create a Gig!</h5>
+		            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                <span aria-hidden="true">&times;</span>
+		            </button>
+		        </div>
+		        <div class="modal-body">
+		        	<form id="eventInfoForm">
+		        		<div class="form-group">
+			        		Name of Gig:
+			        		<input type="text" id="gigName" name="gigName" placeholder="Gig Name"><br>
+			        		Location:
+			        		<input type="text" id="gigLocation" name="gigLocation" placeholder="Gig Location"><br>
+			        		Date:
+			        		<input type="text" id="gigDate" name="gigDate" placeholder="Date"><br>
+			        		Hours:
+			        		<input type="text" id="gigHours" name="gigHours" placeholder="Hours">
+			        		Description:
+			        		<input type="text" id="gigText" name="gigText" placeholder="Gig Description">
+		        		</div>
+		        	</form>
+		        </div>
+		        <div class="modal-footer">
+		            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		            <button type="button" id="createGig" class="btn btn-primary submit">Create</button>
+
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+	<!--<div class="modal loginAdmin" tabindex="-1" role="dialog" aria-labelledby="loginAdminModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-md">
+	        <div class="modal-content">
+	    	    <div class="modal-header">
+		            <h5 class="modal-title" id="exampleModalLabel">Admin Login</h5>
+		            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                <span aria-hidden="true">&times;</span>
+		            </button>
+		        </div>
+		        <div class="modal-body">
+		        	<form id="adminLoginForm">
+		        		Email:
+		        		<input type="text" id="adminLoginEmail" name="adminEmail" placeholder="Admin Email"><br>
+		        		Password:
+		        		<input type="text" id="adminLoginPassword" name="adminPassword" placeholder="Admin Password">
+		        	</form>
+		        </div>
+		        <div class="modal-footer">
+		            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		            <button type="button" id="loginAdmin" class="btn btn-primary">Login</button>
+		        </div>
+		    </div>
+		</div>
+	</div>-->
+
+	<!--<input type="text" name="key" id="key">
+	<button class="btn btn-primary" id="submitKey" data-toggle="modal" data-target=".accessKey">Submit Key</button>-->
+
+	<div id='calendar' style = 'width: 800px'></div>
+
+	<!--<div class="modal accessKey" tabindex="-1" role="dialog" aria-labelledby="accessKeyModelLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-md">
+	        <div class="modal-content">
+	    	    <div class="modal-header">
+		            <h5 class="modal-title" id="exampleModalLabel">Event Information</h5>
+		            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                <span aria-hidden="true">&times;</span>
+		            </button>
+		        </div>
+		        <div class="modal-body">
+		        	
+		        </div>
+		        <div class="modal-footer">
+		            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		            <button type="button" class="btn btn-primary">Accept!</button>
+		        </div>
+		    </div>
+		</div>
+	</div>-->
+
+	<script src="js/admin.js"></script>
 
 </body>
 </html>

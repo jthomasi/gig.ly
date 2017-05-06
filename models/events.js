@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 100]
       }
     }, 
+
     event_date: {
       type: DataTypes.DATE, 
       allowNull: false
@@ -29,11 +30,11 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: {
               allowNull: false
             }
-          });
+          }),
           Event.hasMany(models.Job, {
             onDelete: "cascade"
           });
-          
+
         }
       }
   });
