@@ -8,10 +8,6 @@ $(document).ready(function(){
 		$(".loginAdmin").fadeToggle("fast", "linear");
 	});
 
-		$(".access-key").click(function(){
-		$(".accessKey").fadeToggle("fast", "linear");
-	});
-
 	$("#createAdmin").on("click", function(event){
 
 		event.preventDefault();
