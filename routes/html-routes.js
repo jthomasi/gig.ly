@@ -10,7 +10,7 @@ module.exports = function(app) {
 
   // cms route loads cms.html
   app.get("/admin", function(req, res) {
-    res.sendFile(path.join(__dirname, "admin.html"));
+    res.sendFile(path.join(__dirname, "../public/admin.html"));
   });
 
 };

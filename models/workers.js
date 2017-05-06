@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Admin = sequelize.define("Admin", {
+  var Worker = sequelize.define("Worker", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,29 +10,36 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      len: [1, 100]
+      validate: {
+        len: [1, 100]
+      }
     },
     cellphone: {
       type: DataTypes.STRING,
       allowNull: false,
-      len: [10, 15]
+      validate: {
+        len: [10, 13]
+      }
     },
     password: {
       type: DataTypes.STRING,
       allowNull:false,
-      len: [1, 20]
+      validate: {
+        len: [1, 100]
+      }
     }
   },
     {
-      // We're saying that we want our Admins to have Events
+      // We're saying that we want our Author to have Posts
       classMethods: {
         associate: function(models) {
-          Admin.hasMany(models.Event, {
+          // An Author (foreignKey) is required or a Post can't be made
+          Worker.hasMany(models.Job, {
             onDelete: "cascade"
           });
         }
       }
     }
   );
-  return Admin;
+  return Worker;
 };

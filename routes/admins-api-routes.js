@@ -13,4 +13,34 @@ module.exports = function(app) {
     });
   });
 
+
+
+  app.get("/api/admins", function(req, res) {
+    db.Admin.findAll({
+    	//join to include the admin who created the event
+      // include: [db.Admin],
+    }).then(function(dbAdmin) {
+      console.log("Route: "+dbAdmin);
+      res.json(dbAdmin);
+    });
+  });
+
+
+
+  app.get("/api/admins/:email", function(req, res) {
+    db.Admin.findOne({
+    	where: {
+          email: req.params.email
+        }
+    	//join to include the admin who created the event
+      // include: [db.Admin],
+    }).then(function(dbAdmin) {
+      console.log("Route: "+dbAdmin);
+      res.json(dbAdmin);
+    });
+  });
+
+
+
+
 }
