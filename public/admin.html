@@ -11,14 +11,17 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link rel='stylesheet' href='assets/fullcalendar/fullcalendar.css' />
-	<link rel ='stylesheet' href = 'assets/admin.css'>
-	<link rel="stylesheet" href='assets/jquery-ui.css'>
+	<link rel ='stylesheet' href = 'assets/style/admin.css'>
+	<link rel="stylesheet" href='assets/style/jquery-ui.css'>
+	<link rel="stylesheet" href='assets/style/jquery.timepicker.css'>
 	<script src='assets/lib/moment.js'></script>
+	<script src='assets/lib/timepicker.js'></script>
 	<script src='assets/fullcalendar/fullcalendar.js'></script>
 	<script>
   	$( function() {
     	$( "#datepicker" ).datepicker();
   	});
+
   	</script>
 
 </head>
@@ -46,11 +49,10 @@
 			        		<input type="text" id="gigName" name="gigName" placeholder="Gig Name"><br>
 			        		Location:
 			        		<input type="text" id="gigLocation" name="gigLocation" placeholder="Gig Location"><br>
-			        		<!-- Date:
-			        		<input type="text" id="gigDate" name="gigDate" placeholder="Date"><br> -->
 			        		Date: <input type="text" id="datepicker">
 			        		Start Time:
-			        		<input type="text" id="gigHours" name="gigHours" placeholder="Hours">
+			        		<input type="text" id="startTime" name="startTime" placeholder="Start Time">
+			        		<!-- <input type="text" id="gigMinutes" name="gigMinutes" placeholder="Hours"> -->
 			        		Description:
 			        		<input type="text" id="gigText" name="gigText" placeholder="Gig Description">
 		        		</div>

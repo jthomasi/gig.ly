@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	$('#startTime').timepicker({ 'scrollDefault': 'now' });
+
 	$('#calendar').fullCalendar({
     	events: []
 	});
@@ -10,7 +12,7 @@ $(document).ready(function(){
 	var gigArray  = [
 		        {
 		            title  : "Test Gig",
-		            start  : '2017-05-05T12:30:00',
+		            start  : '2017-05-05T02:30:00',
 		            //end	: '2017-05-09T14:30:00',
 		            allDay : false // will make the time show
 		        }
@@ -24,21 +26,16 @@ $(document).ready(function(){
 
 		var gigName = $("#gigName").val().trim();
 		var gigLocation = $("#gigLocation").val().trim();
-		//var gigDate = $("#gigDate").val().trim();
-		//will need to separate into:
 		var gigYear = $("#datepicker").val()[6] + $("#datepicker").val()[7] + $("#datepicker").val()[8] + $("#datepicker").val()[9];
 		var gigMonth = $("#datepicker").val()[0] + $("#datepicker").val()[1];
 		var gigDay = $("#datepicker").val()[3] + $("#datepicker").val()[4];
-		var gigHourStart = $("#gigHoursStart");
-		var gigMinuteStart = $("#gigMinuteStart");
-		var gigSecondStart = $("#gigSecondStart");
-		// var gigYearEnd = $("#gigYear")
-		// var gigMonthEnd =
-		// var gigDayEnd = 
+		var gigHourStart = $("#startTime").val();
+		var gigMinuteStart = $("#gigMinuteStart").val();
+		var gigSecondStart = $("#gigSecondStart").val();
 		// var gigHourEnd = 
 		// var gigMinuteEnd =
 		// var gigSecondEnd =
-		var TESTgigHours = $("#gigHours").val().trim();
+		//var TESTgigHours = $("#gigHours").val().trim();
 		var gigText = $("#gigText").val().trim();
 
 		//so i.e. 
@@ -48,7 +45,13 @@ $(document).ready(function(){
 		startString += gigMonth;
 		startString += '-';
 		startString += gigDay;
+		startString += 'T';
+		startString += gigHourStart;
+		startString += ':';
+		startString += gigMinuteStart;
+		startString += ':00';
 		console.log(startString);
+		console.log(gigHourStart);
 		//gigYearStart + "-" + gigMonthStart + "-" gigDayStart + "T" + gigHourStart + ":" + gigMinuteStart + ":" + gigSecondStart;
 
 
