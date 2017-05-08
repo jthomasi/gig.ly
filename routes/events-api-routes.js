@@ -65,3 +65,18 @@ module.exports = function(app) {
 
 }
 
+  app.get("/api/events/:id", function(req, res) {
+    db.Event.findOne({
+    	//join to include the admin who created the event
+      // include: [db.Admin],
+        where: {
+          id: req.params.id
+        }
+    }).then(function(dbEvent) {
+      console.log("Route: "+dbEvent);
+      res.json(dbEvent);
+    });
+  });
+
+}
+
