@@ -29,9 +29,9 @@ $(document).ready(function(){
 		var gigYear = $("#datepicker").val()[6] + $("#datepicker").val()[7] + $("#datepicker").val()[8] + $("#datepicker").val()[9];
 		var gigMonth = $("#datepicker").val()[0] + $("#datepicker").val()[1];
 		var gigDay = $("#datepicker").val()[3] + $("#datepicker").val()[4];
-		var gigHourStart = $("#startTime").val();
-		var gigMinuteStart = $("#gigMinuteStart").val();
-		var gigSecondStart = $("#gigSecondStart").val();
+		//var gigHourStart = $("#startTime").val();
+		//var gigMinuteStart = $("#gigMinuteStart").val();
+		//var gigSecondStart = $("#gigSecondStart").val();
 		// var gigHourEnd = 
 		// var gigMinuteEnd =
 		// var gigSecondEnd =
@@ -46,22 +46,30 @@ $(document).ready(function(){
 		startString += '-';
 		startString += gigDay;
 		startString += 'T';
-		startString += '02:30:00';
+		//startString += '02:30:00';
 		//gigHourStart;
 		//will have to be ...
-		/*if ($("#startTime").val()[1] === ":") {
+		if ($("#startTime").val()[1] === ":") {
 			startString += '0';
 			startString += $("#startTime").val()[0];
+			startString += ':';
+			startString += $("#startTime").val()[2];
+			startString += $("#startTime").val()[3];
+			startString += ':00';
 		}
 		else {
 			startString += $("#startTime").val()[0];
 			startString += $("#startTime").val()[1];
-		}*/
+			startString += ':';
+			startString += $("#startTime").val()[3];
+			startString += $("#startTime").val()[4];
+			startString += ':00';
+		}
 		// startString += ':';
 		// startString += gigMinuteStart;
 		// startString += ':00';
 		console.log(startString);
-		console.log(gigHourStart);
+		//console.log(gigHourStart);
 		//gigYearStart + "-" + gigMonthStart + "-" gigDayStart + "T" + gigHourStart + ":" + gigMinuteStart + ":" + gigSecondStart;
 
 
