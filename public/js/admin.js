@@ -64,4 +64,35 @@ $(document).ready(function(){
 
 	});
 
+	$(document).on("click", ".fc-event-container", function() {
+
+		$('#eventModal').modal('show');
+
+		var event = $(this);
+
+		displayGig(event);
+
+		//console.log(title[this].innerHTML);
+		//console.log(title[0].innerHTML);
+		//console.log(time[0].innerHTML);
+	});
+
+	function displayGig(event){
+
+		$("#eventModalInfo").empty();
+
+		var modalBody = $("#eventModalInfo");
+		var gig = $("<ul>");
+		var listItemName = $("<li>");
+
+		var name = event[0].innerText;
+
+		listItemName.text(name);
+
+		gig.append(listItemName);
+
+		modalBody.append(gig);
+
+	};
+	
 });

@@ -30,8 +30,6 @@ app.use(methodOverride("_method"));
 // =============================================================
 app.use(express.static("./public"));
 
-
-
 //commented handlebars and routes out to test models
 
 // Set Handlebars
