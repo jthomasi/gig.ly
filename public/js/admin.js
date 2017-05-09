@@ -144,7 +144,7 @@ $(document).ready(function(){
 		}
 		console.log(startString);
 
-		//now we do the same thing we end time input box
+		//now we do the same thing with end time input box
 
 		var endString = '';
 		endString += gigYear;
