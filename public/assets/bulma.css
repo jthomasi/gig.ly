@@ -1,0 +1,16 @@
+.everything {
+
+}
+
+.main-buttons {
+	margin-top: 50px;
+
+}
+
+.submitKey {
+	margin-top:20px;
+}
+
+.key-button, .column {
+	display: inline-block !important;
+}
