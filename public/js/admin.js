@@ -274,7 +274,7 @@ $(document).ready(function(){
 
 	$(document).on("click", ".fc-event-container", function() {
 
-		$('#eventModal').modal('show');
+		$("#eventModal").fadeToggle("fast", "linear");
 
 		var event = $(this);
 

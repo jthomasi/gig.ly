@@ -61,10 +61,6 @@ module.exports = function(app) {
       });
   });
 
-
-
-}
-
   app.get("/api/events/:id", function(req, res) {
     db.Event.findOne({
     	//join to include the admin who created the event
@@ -79,4 +75,3 @@ module.exports = function(app) {
   });
 
 }
-
