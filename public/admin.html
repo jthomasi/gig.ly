@@ -7,16 +7,19 @@
 	<title>gig.ly - Admins</title>
 
 	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rtype="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
+	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 	<link rel='stylesheet' href='assets/fullcalendar/fullcalendar.css' />
 	<link rel ='stylesheet' href = 'assets/style/admin.css'>
 	<link rel="stylesheet" href='assets/style/jquery-ui.css'>
 	<link rel="stylesheet" href='assets/style/jquery.timepicker.css'>
+	<link type="text/css" rel="stylesheet" href="assets/bulma.css">
 	<script src='assets/lib/moment.js'></script>
 	<script src='assets/lib/timepicker.js'></script>
 	<script src='assets/fullcalendar/fullcalendar.js'></script>
@@ -32,41 +35,51 @@
 <body>
 
 
-	<h1>Gig.ly Admin Event Page</h1><br>
+	<h1 class="title">Gig.ly Admin Event Page</h1><br>
 
-	<button class="btn btn-primary" id = "gigButt"data-toggle="modal" data-target=".createGig">Create Gig</button>
+	<button class="button is-info gigButt" id = "gigButt">Create Gig</button>
 
 	<!--<button class="btn btn-primary" data-toggle="modal" data-target=".loginAdmin">Login Admin</button><br><br>-->
 
-	<div class="modal createGig" tabindex="-1" role="dialog" aria-labelledby="createGigModelLabel" aria-hidden="true">
-	    <div class="modal-dialog modal-md">
+	<div class="modal createGig">
+	<div class="modal-background"></div>
+	    <div class="modal-card">
 	        <div class="modal-content">
-	    	    <div class="modal-header">
-		            <h5 class="modal-title" id="exampleModalLabel">Create a Gig!</h5>
-		            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                <span aria-hidden="true">&times;</span>
-		            </button>
+	    	    <div class="modal-card-head">
+		            <h5 class="modal-card-title" id="exampleModalLabel">Create a Gig!</h5>
 		        </div>
-		        <div class="modal-body">
+		        <div class="modal-card-body">
 		        	<form id="eventInfoForm">
-		        		<div class="form-group">
-			        		Name of Gig:
-			        		<input type="text" id="gigName" name="gigName" placeholder="Gig Name"><br>
-			        		Location:
-			        		<input type="text" id="gigLocation" name="gigLocation" placeholder="Gig Location"><br>
-			        		Date: <input type="text" id="datepicker">
-			        		Start Time:
-			        		<input type="text" id="startTime" name="startTime" placeholder="Start Time">
-			        		End Time:
-			        		<input type="text" id="endTime" name="endTime" placeholder="End Time">
-			        		Description:
-			        		<input type="text" id="gigText" name="gigText" placeholder="Gig Description">
+		        		<div class="field">
+			        		
+			        		<p class="control">
+			        		<label class="label">Name of Gig: </label>
+			        		<input class="input" type="text" id="gigName" name="gigName" placeholder="What do we call this gig?">
+			        		</p>
+			        		<p class="control">
+			        		<label class="label">Location: </label>
+			        		<input class="input" type="text" id="gigLocation" name="gigLocation" placeholder="Where is this gig?"></p>
+			        		<p class="control"><label class="label">
+			        		Date: </label><input class="input" type="text" id="datepicker" placeholder="Click to select date"></p>
+			        		
+			        		<p class="control">
+			        		<label class="label">Start Time: </label>
+			        		<input class="input" type="text" id="startTime" name="startTime" placeholder="Click to select time"></p>
+			        		
+			        		<p class="control">
+			        		<label class="label">
+			        		End Time:</label>
+			        		<input class="input" type="text" id="endTime" name="endTime" placeholder="Click to select time"></p>
+			        		
+			        		<p class="control">
+			        		<label class="label">Description: </label>
+			        		<input class="input" type="text" id="gigText" name="gigText" placeholder="Describe your gig"></p>
 		        		</div>
 		        	</form>
 		        </div>
-		        <div class="modal-footer">
-		            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		            <button type="button" id="createGig" class="btn btn-primary submit">Create</button>
+		        <div class="modal-card-foot">
+		            <button type="button" class="button is-dark gigButt">Close</button>
+		            <button type="button" id="createGig" class="button is-primary ">Create</button>
 
 		        </div>
 		    </div>

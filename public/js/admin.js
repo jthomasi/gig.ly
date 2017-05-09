@@ -21,7 +21,11 @@ $(document).ready(function(){
 		        }
 		    ]
 
-	$('#calendar').fullCalendar( 'addEventSource', gigArray );		    
+	$('#calendar').fullCalendar( 'addEventSource', gigArray );	
+
+	$(".gigButt").click(function(){
+		$(".createGig").fadeToggle("fast", "linear");
+	});	    
 
 	$("#createGig").on("click", function(event ) {
 
