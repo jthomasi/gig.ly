@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	
 
-	$(".create-admin").click(function(){
+		$(".create-admin").click(function(){
 		$(".createAdmin").fadeToggle("fast", "linear");
 	});
 
@@ -10,9 +10,15 @@ $(document).ready(function(){
 		$(".loginAdmin").fadeToggle("fast", "linear");
 	});
 
+		$(".submitKey,.cancel-key").click(function(){
+		$(".access-key").fadeToggle("fast", "linear");
+	});
+
 	$("#createAdmin").on("click", function(event){
 
 		event.preventDefault();
+
+		$(".createAdmin").fadeToggle("fast", "linear");
 
 		var newName = $("#newAdminName").val().trim();
 		var newEmail = $("#newAdminEmail").val().trim();

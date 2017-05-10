@@ -17,6 +17,7 @@
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">Gig.ly</h1>
+					<br>
 					<h2 class="subtitle">
 					You have a crew, and stuff to do.<br>
 					Schedule easily with gig.ly :)
@@ -41,13 +42,36 @@
 			<div class="columns submitKey">
 				<div class="key-button column is-12">
 					
-					<button class="button index-button is-medium access-key" id="submitKey">Submit Key</button>
-					<br><br>
-					<input class="input column is-half is offset-one-quarter" name="key" type="text" placeholder="If you received an access key, enter it here :)">
+					<button class="button index-button is-medium" id="submitKey">Submit Key</button>
+					
 					
 				</div>
 			</div>
-			<!-- Admin registration modal -->
+			
+			
+			<!-- Access key modal -->
+			<div class="modal access-key">
+				<div class="modal-background"></div>
+				<div class="modal-card">
+					<div class="modal-content">
+						<div class="modal-card-head">
+							<header class="modal-card-title">Submit Access Key</header>
+						</div>
+						<div class="modal-card-body">
+						<p>
+						Paste or enter access key below to view available gigs.</p><br>
+						<input class="input" name="key" type="text" placeholder="Access Key">
+						</div>
+						<div class="modal-card-foot">
+							<button class="button cancel-key">Cancel</button>
+							<button class="button submit-key">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Admin registration modal -->
 			<div class="modal createAdmin">
 				<div class="modal-background"></div>
 				<div class="modal-card">
@@ -77,8 +101,8 @@
 						</form>
 					</div>
 					<div class="modal-card-foot">
-						<a class="button index-button create-admin">Cancel</a>
-						<a id="createAdmin" class="button is-primary submit">Create</a>
+						<a class="button create-admin">Cancel</a>
+						<a id="createAdmin" class="button submit-key submit">Create</a>
 					</div>
 				</div>
 			</div>
@@ -107,32 +131,12 @@
 							
 						</div>
 						<div class="modal-card-foot">
-							<a class="button is-dark login-admin">Close</a>
-							<a id="loginAdmin" class="button is-primary is-dark">Login</a>
+							<a class="button  login-admin">Cancel</a>
+							<a id="loginAdmin" class="button submit-key">Login</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			<!-- Access key modal -->
-			<div class="modal access-key">
-				<div class="modal-background"></div>
-				<div class="modal-card">
-					<div class="modal-content">
-						<div class="modal-card-header">
-							<h5 class="modal-card-title" >Event Information</h5>
-						</div>
-						<div class="modal-card-body">
-						</div>
-						<div class="modal-card-foot">
-							<button type="button" class="button is-dark">Accept!</button>
-							<button class="button is-dark access-key">Cancel</button>
-							<button class="button is-dark">Accept!</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		<script type="text/javascript" src="js/index_js.js"></script>
 	</body>
 </html>
