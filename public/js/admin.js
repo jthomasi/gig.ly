@@ -25,10 +25,14 @@ $(document).ready(function(){
 
 	$(".gigButt").click(function(){
 		$(".createGig").fadeToggle("fast", "linear");
-	});	    
+	});	  
+
+	$(".closeGig").click(function(){
+		$("#eventModal").fadeToggle("fast", "linear");
+	});  
 
 	$("#createGig").on("click", function(event ) {
-
+		$(".createGig").fadeToggle("fast", "linear");
 		event.preventDefault();
 
 		//captures all data from front end
