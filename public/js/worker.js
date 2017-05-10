@@ -4,7 +4,7 @@ $(document).ready(function(){
 		        {
 		            title  : "Test Gig1",
 		            start  : '2017-05-25T13:30:00',
-		            description: 'sgsegs',
+		            description: 'Test gig in HTWON. GET YOUR SCREWSTON ON',
 		            duration: '4',
 		            location: 'Houston, TX',
 		            gigTaken: false,
@@ -14,7 +14,7 @@ $(document).ready(function(){
 		        {
 		            title  : "Tasting",
 		            start  : '2017-06-07T12:30:00',
-		            description: 'segse',
+		            description: 'This tasting will be located at the HEB near UT Campus. Brand Ambassador is expected to work for 3 hours, not including the time it takes to set up and tear down demo equipment',
 		            duration: '3',
 		            location: 'HEB (1000 E 41st St)',
 		            gigTaken: true,
@@ -24,7 +24,7 @@ $(document).ready(function(){
 		        {
 		            title  : "Demo",
 		            start  : '2017-06-07T20:30:00',
-		            description: 'segse',
+		            description: 'Demo at Sprouts. Call 713-151-1616 for more info.',
 		            duration: '2',
 		            location: 'Sprouts',
 		            gigTaken: false,
@@ -81,7 +81,7 @@ $(document).ready(function(){
 			+ " || " + standardHour + ":"
 			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
 			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
-			+ '<a class="button is-danger">Gig Taken!</a>  <a class="button is-info">Info</a>'
+			+ '<a class="button is-danger">Gig Taken!</a>  <a class="button is-info gigInfo" data-index = "'+i+'">Info</a>'
 			+ '</div><br>';
 		}
 		else {
@@ -94,7 +94,7 @@ $(document).ready(function(){
 			+ " || " + standardHour + ":"
 			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
 			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
-			+ '<a class="button is-light gigIt" data-index = "'+gigId+'">Gig it!</a>  <a class="button is-info">Info</a>'
+			+ '<a class="button is-light gigIt" data-index = "'+gigId+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "'+i+'">Info</a>'
 			+ '</div><br>';
 		}
 		jobs.append(displayStyle);
@@ -106,6 +106,13 @@ $('.gigIt').each(function(){
 	$(this).on("click", function(event){
 		// if ($(this).('#gigIt' + gigId))
 		console.log("Gig " + $(this).data('index') + "!");
+	})
+})
+
+$('.gigInfo').each(function(){
+	$(this).on("click", function(event){
+		// if ($(this).('#gigIt' + gigId))
+		console.log(gigArray[$(this).data('index')].description + "!");
 	})
 })
 
