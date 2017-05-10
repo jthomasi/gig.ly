@@ -14,15 +14,17 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css">
 
-	<link rel='stylesheet' href='/assets/fullcalendar/fullcalendar.css' />
-	<link rel ='stylesheet' href = '/assets/style/admin.css'>
-	<link rel="stylesheet" href='/assets/style/jquery-ui.css'>
-	<link rel="stylesheet" href='/assets/style/jquery.timepicker.css'>
-	<link type="text/css" rel="stylesheet" href="/assets/bulma.css">
-	<script src='/assets/lib/moment.js'></script>
-	<script src='/assets/lib/timepicker.js'></script>
-	<script src='/assets/fullcalendar/fullcalendar.js'></script>
+	<link rel='stylesheet' href='assets/fullcalendar/fullcalendar.css' />
+	<link rel ='stylesheet' href = 'assets/style/admin.css'>
+	<link rel="stylesheet" href='assets/style/jquery-ui.css'>
+	<link rel="stylesheet" href='assets/style/jquery.timepicker.css'>
+	<link type="text/css" rel="stylesheet" href="assets/bulma.css">
+	<script src='assets/lib/moment.js'></script>
+	<script src='assets/lib/timepicker.js'></script>
+	<script src='assets/fullcalendar/fullcalendar.js'></script>
 	<script>
   	$( function() {
     	$( "#datepicker" ).datepicker();
@@ -70,6 +72,11 @@
 			        		<label class="label">
 			        		End Time:</label>
 			        		<input class="input" type="text" id="endTime" name="endTime" placeholder="Click to select time"></p>
+
+			        		<p class="control">
+			        		<label class="label">
+			        		Duration: </label>
+			        		<input class="input" type="text" id="duration" name="duration" placeholder="Click to select time"></p>
 			        		
 			        		<p class="control">
 			        		<label class="label">Description: </label>
@@ -134,7 +141,7 @@
 		</div>
 	</div>
 
-	<script src="/js/admin.js"></script>
+	<script src="js/admin.js"></script>
 
 </body>
 </html>
