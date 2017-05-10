@@ -56,6 +56,7 @@ $(document).ready(function(){
 		var gigMonth = $("#datepicker").val()[0] + $("#datepicker").val()[1];
 		var gigDay = $("#datepicker").val()[3] + $("#datepicker").val()[4];
 		var gigStart = $("#startTime");
+		var gigHours = $("#gigHours").val();
 		var gigEnd = $("#endTime");
 		var gigDuration = $("#duration").val().trim()+" hours";
 		var gigText = $("#gigText").val().trim();
@@ -164,7 +165,7 @@ $(document).ready(function(){
 		}
 		console.log(startString);
 
-		//now we do the same thing we end time input box
+		//now we do the same thing with end time input box
 
 		var newGig = {
 			title: gigName,

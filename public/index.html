@@ -12,16 +12,14 @@
 		<!-- 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 	</head>
 	<body>
-
 		<!-- 	Main page header 	-->
-
-
-		<section class="hero is-dark">
+		<section class="hero is-medium gig-banner">
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">Gig.ly</h1>
 					<h2 class="subtitle">
-					Subtitle placeholder
+					You have a crew, and stuff to do.<br>
+					Schedule easily with gig.ly :)
 					</h2>
 				</div>
 			</div>
@@ -29,14 +27,29 @@
 		<!-- Main page content -->
 		<div class="container everything">
 			<div class="main-buttons columns is-fullwidth">
-			<div class="column is-8 is-offset-4">
-				<button class="button is-dark create-admin">Create Admin</button>
-				<button class="button is-dark login-admin">Login Admin</button>
+				<div class="column is-12">
+				<button class="button is-medium index-button create-admin">Create Admin</button>
+				<br>
+				<br>
+				<button class="button is-medium index-button login-admin">Admin Login</button>
+					
+					
+				</div>
+			</div>
+
+					<!-- Access key entry for workers -->
+			<div class="columns submitKey">
+				<div class="key-button column is-12">
+					
+					<button class="button index-button is-medium access-key" id="submitKey">Submit Key</button>
+					<br><br>
+					<input class="input column is-half is offset-one-quarter" name="key" type="text" placeholder="If you received an access key, enter it here :)">
+					
 				</div>
 			</div>
 			<!-- Admin registration modal -->
 			<div class="modal createAdmin">
-			<div class="modal-background"></div>
+				<div class="modal-background"></div>
 				<div class="modal-card">
 					<div class="modal-content">
 						<div class="modal-card-head">
@@ -64,14 +77,14 @@
 						</form>
 					</div>
 					<div class="modal-card-foot">
-						<a class="button is-dark create-admin">Cancel</a>
+						<a class="button index-button create-admin">Cancel</a>
 						<a id="createAdmin" class="button is-primary submit">Create</a>
 					</div>
 				</div>
 			</div>
 			<!-- Admin login modal -->
 			<div class="modal loginAdmin">
-			<div class="modal-background"></div>
+				<div class="modal-background"></div>
 				<div class="modal-card">
 					<div class="modal-content">
 						<div class="modal-card-head">
@@ -101,6 +114,7 @@
 				</div>
 			</div>
 			
+
 			<!-- Access key entry for workers -->
 			<div class="container columns submitKey">
 				<div class="key-button column is-10 is-offset-one-quarter">
@@ -113,24 +127,26 @@
 
 				<!-- Access key modal -->
 				<div class="modal access-key">
+
+			<!-- Access key modal -->
+			<div class="modal access-key">
 				<div class="modal-background"></div>
-					<div class="modal-card">
-						<div class="modal-content">
-							<div class="modal-card-header">
-								<h5 class="modal-card-title" >Event Information</h5>
-							</div>
-							<div class="modal-card-body">
-							</div>
-							<div class="modal-card-foot">
-								<button type="button" class="button is-dark">Accept!</button>
-								<button class="button is-dark access-key">Cancel</button>
-								<button class="button is-dark">Accept!</button>
-							</div>
+				<div class="modal-card">
+					<div class="modal-content">
+						<div class="modal-card-header">
+							<h5 class="modal-card-title" >Event Information</h5>
+						</div>
+						<div class="modal-card-body">
+						</div>
+						<div class="modal-card-foot">
+							<button type="button" class="button is-dark">Accept!</button>
+							<button class="button is-dark access-key">Cancel</button>
+							<button class="button is-dark">Accept!</button>
 						</div>
 					</div>
 				</div>
 			</div>
-
+		</div>
 		<script type="text/javascript" src="js/index_js.js"></script>
 	</body>
 </html>
