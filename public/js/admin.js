@@ -28,10 +28,14 @@ $(document).ready(function(){
 
 	$(".gigButt").click(function(){
 		$(".createGig").fadeToggle("fast", "linear");
-	});	    
+	});	  
+
+	$(".closeGig").click(function(){
+		$("#eventModal").fadeToggle("fast", "linear");
+	});  
 
 	$("#createGig").on("click", function(event ) {
-
+		$(".createGig").fadeToggle("fast", "linear");
 		event.preventDefault();
 
 		//captures all data from front end
@@ -279,28 +283,29 @@ $(document).ready(function(){
 
 		$("#eventModal").fadeToggle("fast", "linear");
 
-		var event = $(this);
+		var eventTitle = $(this).find('.fc-title').text();
+		var eventTime = $(this).find('.fc-time').text();
 
-		displayGig(event);
+		displayGig(eventTitle, eventTime);
 
 		//console.log(title[this].innerHTML);
 		//console.log(title[0].innerHTML);
 		//console.log(time[0].innerHTML);
 	});
 
-	function displayGig(event){
+	function displayGig(title, time){
 
 		$("#eventModalInfo").empty();
 
 		var modalBody = $("#eventModalInfo");
 		var gig = $("<ul>");
-		var listItemName = $("<li>");
+		var eventTitle = $("<li>");
+		var eventTime = $("<li>");
 
-		var name = event[0].innerText;
+		eventTitle.text(title);
+		eventTime.text(time);
 
-		listItemName.text(name);
-
-		gig.append(listItemName);
+		gig.append(eventTitle,eventTime);
 
 		modalBody.append(gig);
 
