@@ -6,7 +6,22 @@ $(document).ready(function(){
 	$('#endTime').timepicker({ 'scrollDefault': 'now' });
 	//initialize full calendar to prepare to recieve event data
 	$('#calendar').fullCalendar({
-    	events: []
+    	events: [],
+    	eventRender: function(event, element) {
+            element.qtip({
+                content: event.description + '<br />' + event.start,
+                style: {
+                    background: 'black',
+                    color: '#FFFFFF'
+                },
+                position: {
+                    corner: {
+                        target: 'center',
+                        tooltip: 'bottomMiddle'
+                    }
+                }
+            });
+        }
 	});
 
 	//example array that would be in a DB
@@ -14,10 +29,9 @@ $(document).ready(function(){
 	//local storage to test
 	var gigArray  = [
 		        {
-		            title  : "Test Gig",
-		            start  : '2017-05-05T02:30:00',
-		            end	: '2017-05-05T14:30:00',
-		            allDay : false // will make the time show
+		        	title: "Test Gig",
+					start: '2017-05-05T02:30:00',
+					description: "Location: Austin, TX | Duration: 2 hours | Description: A fun little meet up for singles!"
 		        }
 		    ]
 
@@ -25,10 +39,14 @@ $(document).ready(function(){
 
 	$(".gigButt").click(function(){
 		$(".createGig").fadeToggle("fast", "linear");
-	});	    
+	});	  
+
+	$(".closeGig").click(function(){
+		$("#eventModal").fadeToggle("fast", "linear");
+	});  
 
 	$("#createGig").on("click", function(event ) {
-
+		$(".createGig").fadeToggle("fast", "linear");
 		event.preventDefault();
 
 		//captures all data from front end
@@ -39,7 +57,9 @@ $(document).ready(function(){
 		var gigDay = $("#datepicker").val()[3] + $("#datepicker").val()[4];
 		var gigStart = $("#startTime");
 		var gigEnd = $("#endTime");
+		var gigDuration = $("#duration").val().trim()+" hours";
 		var gigText = $("#gigText").val().trim();
+		var gigDescription = "Location: "+gigLocation+" | Duration: "+gigDuration+" | Description: "+gigText;
 
 		//starts building string so fullcalendar can read our inputed gig time
 		var startString = '';
@@ -146,116 +166,10 @@ $(document).ready(function(){
 
 		//now we do the same thing with end time input box
 
-		var endString = '';
-		endString += gigYear;
-		endString += '-';
-		endString += gigMonth;
-		endString += '-';
-		endString += gigDay;
-		endString += 'T';
-
-		var fillOutEndTime = function () {
-			endString += ':';
-			endString += gigEnd.val()[2];
-			endString += gigEnd.val()[3];
-			endString += ':00';
-		}
-
-		var fillOutEndTimeLong = function () {
-			endString += ':';
-			endString += gigEnd.val()[3];
-			endString += gigEnd.val()[4];
-			endString += ':00';
-		}
-
-		if (gigEnd.val()[1] === ":") {
-			if (gigEnd.val()[4] === "a") {
-				endString += '0';
-				endString += gigEnd.val()[0];
-				fillOutEndTime();
-				//all times 1a-9a
-			}
-			else if (gigEnd.val()[4] === "p") {
-				if (gigEnd.val()[0] === "1") {
-					endString += '13'; //i.e. 1pm
-					fillOutEndTime();
-				}
-				else if (gigEnd.val()[0] === "2") {
-					endString += '14'; //i.e. 2pm etc.
-					fillOutEndTime();
-				}
-				else if (gigEnd.val()[0] === "3") {
-					endString += '15';
-					fillOutEndTime();
-				}
-				else if (gigEnd.val()[0] === "4") {
-					endString += '16';
-					fillOutEndTime();
-				}
-				else if (gigEnd.val()[0] === "5") {
-					endString += '17';
-					fillOutEndTime();
-				}
-				else if (gigEnd.val()[0] === "6") {
-					endString += '18';
-					fillOutEndTime();
-				}
-				else if (gigEnd.val()[0] === "7") {
-					endString += '19';
-					fillOutEndTime();
-				}
-				else if (gigEnd.val()[0] === "8") {
-					endString += '20';
-					fillOutEndTime();
-				}
-				else if (gigEnd.val()[0] === "9") {
-					endString += '21';
-					fillOutEndTime();
-				}
-			}
-		}
-		if (gigEnd.val()[2] === ":") {
-			if (gigEnd.val()[5] === "a") {
-				if (gigEnd.val()[0] === "1" && gigEnd.val()[1] === "2") {
-					endString += '00'; //i.e midnight
-					fillOutEndTimeLong();
-				}
-				else if (gigEnd.val()[0] === "1" && gigEnd.val()[1] === "1") {
-					endString += '11';  //i.e. 11am
-					fillOutEndTimeLong();
-				}
-				else if (gigEnd.val()[0] === "1" && gigEnd.val()[1] === "0") {
-					endString += '10';  //i.e. 10am
-					fillOutEndTimeLong();
-				}
-			}
-			else if (gigEnd.val()[5] === "p") {
-				if (gigEnd.val()[1] === "0") {
-					endString += '22'; //i.e. 10pm
-					fillOutEndTimeLong();
-				}
-				else if (gigEnd.val()[1] === "1") {
-					endString += '23';  //i.e. 11pm
-					fillOutEndTimeLong();
-				}
-				else if (gigEnd.val()[1] === "2") {
-					endString += '12';  //i.e. 12pm
-					fillOutEndTimeLong();
-				}
-			}
-		}
-		console.log(endString);
-
 		var newGig = {
 			title: gigName,
 			start: startString,
-			end: endString,
-			allDay: false
-		}
-
-		var newGigInfo = {
-			location: gigLocation,
-			text: gigText
+			description: gigDescription
 		}
 
 		gigArray.push(newGig);
@@ -268,7 +182,6 @@ $(document).ready(function(){
 		$('#calendar').fullCalendar( 'addEventSource', gigArray );
 
 		console.log(newGig);
-		console.log(newGigInfo);
 
 	});
 
@@ -281,9 +194,6 @@ $(document).ready(function(){
 
 		displayGig(eventTitle, eventTime);
 
-		//console.log(title[this].innerHTML);
-		//console.log(title[0].innerHTML);
-		//console.log(time[0].innerHTML);
 	});
 
 	function displayGig(title, time){

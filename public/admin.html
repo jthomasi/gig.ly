@@ -14,6 +14,8 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css">
 
 	<link rel='stylesheet' href='assets/fullcalendar/fullcalendar.css' />
 	<link rel ='stylesheet' href = 'assets/style/admin.css'>
@@ -70,6 +72,11 @@
 			        		<label class="label">
 			        		End Time:</label>
 			        		<input class="input" type="text" id="endTime" name="endTime" placeholder="Click to select time"></p>
+
+			        		<p class="control">
+			        		<label class="label">
+			        		Duration: </label>
+			        		<input class="input" type="text" id="duration" name="duration" placeholder="Click to select time"></p>
 			        		
 			        		<p class="control">
 			        		<label class="label">Description: </label>
@@ -79,57 +86,27 @@
 		        </div>
 		        <div class="modal-card-foot">
 		            <button type="button" class="button is-dark gigButt">Close</button>
-		            <button type="button" id="createGig" class="button is-primary ">Create</button>
+		            <button type="button" id="createGig" class="button is-primary">Create</button>
 
 		        </div>
 		    </div>
 		</div>
 	</div>
 
-	<!--<div class="modal loginAdmin" tabindex="-1" role="dialog" aria-labelledby="loginAdminModalLabel" aria-hidden="true">
-	    <div class="modal-dialog modal-md">
-	        <div class="modal-content">
-	    	    <div class="modal-header">
-		            <h5 class="modal-title" id="exampleModalLabel">Admin Login</h5>
-		            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                <span aria-hidden="true">&times;</span>
-		            </button>
-		        </div>
-		        <div class="modal-body">
-		        	<form id="adminLoginForm">
-		        		Email:
-		        		<input type="text" id="adminLoginEmail" name="adminEmail" placeholder="Admin Email"><br>
-		        		Password:
-		        		<input type="text" id="adminLoginPassword" name="adminPassword" placeholder="Admin Password">
-		        	</form>
-		        </div>
-		        <div class="modal-footer">
-		            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		            <button type="button" id="loginAdmin" class="btn btn-primary">Login</button>
-		        </div>
-		    </div>
-		</div>
-	</div>-->
-
-	<!--<input type="text" name="key" id="key">
-	<button class="btn btn-primary" id="submitKey" data-toggle="modal" data-target=".accessKey">Submit Key</button>-->
-
 	<div id='calendar' style = 'width: 800px'></div>
 	
 	<div class="modal eventModal" id="eventModal">
-	    <div class="modal-dialog modal-md">
+	<div class="modal-background"></div>
+	    <div class="modal-card">
 	        <div class="modal-content">
-	    	    <div class="modal-header">
-		            <h5 class="modal-title">Event Information</h5>
-		            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                <span aria-hidden="true">&times;</span>
-		            </button>
+	    	    <div class="modal-card-header">
+		            <h5 class="modal-card-title">Event Information</h5>
 		        </div>
-		        <div class="modal-body" id="eventModalInfo">
+		        <div class="modal-card-body" id="eventModalInfo">
 		        	
 		        </div>
-		        <div class="modal-footer">
-		            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <div class="modal-card-foot">
+		            <button class="button is-dark closeGig">Close</button>
 		            <!-- <button type="button" class="btn btn-primary">Accept!</button> -->
 		        </div>
 		    </div>
@@ -140,3 +117,4 @@
 
 </body>
 </html>
+
