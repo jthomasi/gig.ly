@@ -42,6 +42,7 @@ $(document).ready(function(){
 		var gigMonth = $("#datepicker").val()[0] + $("#datepicker").val()[1];
 		var gigDay = $("#datepicker").val()[3] + $("#datepicker").val()[4];
 		var gigStart = $("#startTime");
+		var gigHours = $("#gigHours").val();
 		var gigEnd = $("#endTime");
 		var gigText = $("#gigText").val().trim();
 
@@ -172,7 +173,7 @@ $(document).ready(function(){
 			endString += ':00';
 		}
 
-		if (gigEnd.val()[1] === ":") {
+		/*if (gigEnd.val()[1] === ":") {
 			if (gigEnd.val()[4] === "a") {
 				endString += '0';
 				endString += gigEnd.val()[0];
@@ -247,13 +248,13 @@ $(document).ready(function(){
 					fillOutEndTimeLong();
 				}
 			}
-		}
+		}*/
 		console.log(endString);
 
 		var newGig = {
 			title: gigName,
 			start: startString,
-			end: endString,
+			//end: endString,
 			allDay: false
 		}
 
@@ -273,6 +274,7 @@ $(document).ready(function(){
 
 		console.log(newGig);
 		console.log(newGigInfo);
+		console.log("IT WORKED!: " + gigHours);
 
 	});
 
