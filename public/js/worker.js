@@ -50,12 +50,6 @@ $(document).ready(function(){
 		var noon;
 		var displayStyle;
 
-		//could do whole string this way that way we wouldn't have to append button to booked gigs
-		if (gigArray[i].gigTaken === true)
-			displayStyle = '<div class = "notification is-warning">' + gigId + ". GIG BOOKED! ";
-		else
-			displayStyle = '<div class = "notification is-primary">' + gigId + ". ";
-
 		if (militaryHour >= 12)
 			noon = "p";
 		else if (militaryHour < 12)
@@ -77,18 +71,61 @@ $(document).ready(function(){
 		console.log(standardHour);
 
 		//append all data from gigArray onto html page
-		jobs.append(displayStyle
-		+ gigArray[i].title + " || "
-		+ gigArray[i].location + "<br>"
-		+ gigArray[i].start[5] + gigArray[i].start[6] + " / "
-		+ gigArray[i].start[8] + gigArray[i].start[9] + " / "
-		+ gigArray[i].start[0] + gigArray[i].start[1] + gigArray[i].start[2] + gigArray[i].start[3]
-		+ " || " + standardHour + ":"
-		+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
-		+ "This gig is approximately " + gigArray[i].duration + " hours long."
-		+ '</div><br>');
+		if (gigArray[i].gigTaken === true) {
+			displayStyle = '<div class = "notification is-warning">' + gigId + ". "
+			+ gigArray[i].title + " || "
+			+ gigArray[i].location + "<br>"
+			+ gigArray[i].start[5] + gigArray[i].start[6] + " / "
+			+ gigArray[i].start[8] + gigArray[i].start[9] + " / "
+			+ gigArray[i].start[0] + gigArray[i].start[1] + gigArray[i].start[2] + gigArray[i].start[3]
+			+ " || " + standardHour + ":"
+			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
+			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
+			+ '<a class="button is-danger">Gig Taken!</a>  <a class="button is-info">Info</a>'
+			+ '</div><br>';
+		}
+		else {
+			displayStyle = '<div class = "notification is-primary">' + gigId + ". "
+			+ gigArray[i].title + " || "
+			+ gigArray[i].location + "<br>"
+			+ gigArray[i].start[5] + gigArray[i].start[6] + " / "
+			+ gigArray[i].start[8] + gigArray[i].start[9] + " / "
+			+ gigArray[i].start[0] + gigArray[i].start[1] + gigArray[i].start[2] + gigArray[i].start[3]
+			+ " || " + standardHour + ":"
+			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
+			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
+			+ '<a class="button is-light gigIt" data-index = "'+gigId+'">Gig it!</a>  <a class="button is-info">Info</a>'
+			+ '</div><br>';
+		}
+		jobs.append(displayStyle);
+
 	}
 }
+
+$('.gigIt').each(function(){
+	$(this).on("click", function(event){
+		// if ($(this).('#gigIt' + gigId))
+		console.log("Gig " + $(this).data('index') + "!");
+	})
+})
+
+	// $('#gigIt' + gigId).on("click", function(event){
+	// 	event.preventDefault();
+	// 	console.log("Gig " + gigId + "!");
+	// })
+
+// for (var i = 0; i < gigArray.length; i++){
+
+// 	$('#gigIt' + gigId).on("click", function(event){
+// 		event.preventDefault();
+// 		console.log("Gig " + this.gigId + "!");
+// 	})
+// }
+
+// $("#gigIt3").on("click", function(event){
+// 	event.preventDefault();
+// 	console.log("Gig 3!")
+// })
 
 //still need to append a dynamic button for accepting gigs
 //2 buttons, one for showing description of event and other is for accepting
