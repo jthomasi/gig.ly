@@ -1,5 +1,16 @@
 .everything {
+	text-align: center;
+}
 
+.index-button {
+background-color: #536599;
+color: white;
+}
+
+.gig-banner {
+	background-color: #D9E0F2;
+	color: black;
+	text-align:center;
 }
 
 .main-buttons {
