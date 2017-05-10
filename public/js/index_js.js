@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	
+
 	$(".create-admin").click(function(){
 		$(".createAdmin").fadeToggle("fast", "linear");
 	});
@@ -48,9 +50,9 @@ $(document).ready(function(){
 	$("#loginAdmin").on("click", function(event){
 
 		event.preventDefault();
-		$(".password-validation").empty();
-		var loginEmail = $("#adminLoginEmail").val().trim();
-		var loginPassword = $("#adminLoginPassword").val().trim();
+		$("#validationError").empty();
+		var loginEmail = $("#adminLoginEmail").val();
+		var loginPassword = $("#adminLoginPassword").val();
 
 		var loginAdmin = {
 			email: loginEmail,
@@ -59,7 +61,7 @@ $(document).ready(function(){
 
 		$.ajax({
 	        method: "GET",
-	        url: "/api/admins/" + loginEmail,
+	        url: "/api/admin/login/" + loginEmail
 	    })
 	    .done(function(data) {
 	    	validatePassword(data, loginPassword);
@@ -93,10 +95,15 @@ $(document).ready(function(){
 		console.log(data);
 		console.log(loginPassword);
     	if (data.password === loginPassword) {
-    		window.location.href = "/admin";
+    		
+    		window.location.href = "/admin/" + data.id;
     	} else {
-    		$(".password-validation").append("<div>Invalid username or password</div>");
+    		$("#validationError").append("<div>Invalid username or password</div>");
         	$("#adminLoginPassword").val("");
     	}
 	}
 });
+
+
+
+

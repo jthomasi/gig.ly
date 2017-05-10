@@ -1,4 +1,7 @@
+
+
 $(document).ready(function(){
+	
 
 	//initialize starting time for gig input box as a timepicker
 	$('#startTime').timepicker({ 'scrollDefault': 'now' });
