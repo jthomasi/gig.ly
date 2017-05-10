@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 		event.preventDefault();
 
-		var key = $("#keyValue").val().trim();
+		var key = $("#key").val().trim();
 
 		console.log(key);
 
