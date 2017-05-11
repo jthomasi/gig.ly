@@ -4,6 +4,22 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
+
+  app.get("/api/adminEvents/:admin", function(req, res) {
+    console.log("req params admin" + req.params.admin)
+    db.Event.findAll({
+      where: {
+        AdminId: req.params.admin
+      }
+      //join to include the admin who created the event
+      // include: [db.Admin],
+    }).then(function(dbEvent) {
+      console.log("Route: "+dbEvent);
+      res.json(dbEvent);
+    });
+  });
+
+
  // NOT REALLY CONFIDENT ON THE JOINS BETWEEN EVENT AND ADMIN HERE
  // NEEDS TESTED
   app.get("/api/events/:id", function(req, res) {
@@ -21,6 +37,8 @@ module.exports = function(app) {
 
   // POST route for creating a new event
   app.post("/api/events/:id", function(req, res) {
+    console.log("create_event");
+    console.log(req.body);
     db.Event.create(req.body).then(function(dbEvent) {
       res.json(dbEvent);
     });

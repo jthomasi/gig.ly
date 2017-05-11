@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	var currentAdminId;
+
 	//initialize starting time for gig input box as a timepicker
 	$('#startTime').timepicker({ 'scrollDefault': 'now' });
 	//initialize end time for gig input box as a timepicker
@@ -24,14 +26,7 @@ $(document).ready(function(){
         }
 	});
 
-	// $.ajax({
- //        method: "GET",
- //        url: "/api/events/"+req.params.id
- //    })
- //    .done(function(data) {
- //        console.log("we made it"+data);
-       
- //    });
+
 
 	//example array that would be in a DB
 	//will need to use either MySQL or
@@ -44,6 +39,17 @@ $(document).ready(function(){
 		        }
 		    ]
 
+	$.ajax({
+	    method: "GET",
+	    url: "/api/adminEvents/2",
+	}).done(function(data) {
+		console.log("get data from events api");
+		console.log(data);
+	        gigArray = data;
+	        $('#calendar').fullCalendar( 'addEventSource', gigArray );	
+	    });
+
+
 	var gigInfo = [
 
 		{
@@ -55,7 +61,7 @@ $(document).ready(function(){
 
 	];
 
-	$('#calendar').fullCalendar( 'addEventSource', gigArray );	
+	// $('#calendar').fullCalendar( 'addEventSource', gigArray );	
 
 	$(".gigButt").click(function(){
 		$(".createGig").fadeToggle("fast", "linear");
@@ -185,6 +191,15 @@ $(document).ready(function(){
 
 		//now we do the same thing with end time input box
 
+		var newSqlGig = {
+			name: gigName,
+			start: startString,
+			duration: gigDuration,
+			location: gigLocation,
+			details: gigText,
+			AdminId: 1
+		};
+
 		var newGig = {
 			title: gigName,
 			start: startString,
@@ -202,6 +217,34 @@ $(document).ready(function(){
 			event_date: startString
 		}
 
+
+
+
+		$.ajax({
+	        method: "POST",
+	        url: "/api/events/:id",
+	        data: newSqlGig
+	    })
+	    .done(function(data) {
+	        console.log(data);
+	        $("#gigName").val("");
+	        $("#gigLocation").val("");
+	        $("#datepicker").val("");
+	        $("#startTime").val("");
+	        $("#duration").val("");
+	        $("#gigText").val("");
+	        window.location.href = "/admin/" + data.id;
+	    });
+
+
+		// {
+		// 	title: "Test Gig",
+		// 	location: "Austin,TX",
+		// 	duration: "2 Hours",
+		// 	description: "A fun place to meet up for singles!"
+		// }
+		console.log("new_gig");
+		console.log(newGig);
 		gigArray.push(newGig);
 		gigInfo.push(newInfo);
 
