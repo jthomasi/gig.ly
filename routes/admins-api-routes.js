@@ -38,8 +38,6 @@ module.exports = function(app) {
     });
   });
 
-
-
   app.get("/api/admin/login/:email", function(req, res) {
     db.Admin.findOne({
     	where: {
@@ -53,4 +51,3 @@ module.exports = function(app) {
     });
   });
 };
-

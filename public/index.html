@@ -20,7 +20,7 @@
 					<br>
 					<h2 class="subtitle">
 					You have a crew, and stuff to do.<br>
-					Schedule easily with gig.ly :)
+					Schedule easily with Gig.ly :)
 					</h2>
 				</div>
 			</div>
@@ -39,18 +39,15 @@
 			</div>
 
 					<!-- Access key entry for workers -->
-			<div class="columns submitKey">
+			<div class="columns accessKey">
 				<div class="key-button column is-12">
-					
-					<button class="button index-button is-medium" id="submitKey">Submit Key</button>
-					
-					
-				</div>
+					<button class="button index-button is-medium" id="submitWorkersKey">Submit Key</button>
+					</div>
 			</div>
 			
 			
 			<!-- Access key modal -->
-			<div class="modal access-key">
+			<div class="modal access-key" id="workersKeyModal">
 				<div class="modal-background"></div>
 				<div class="modal-card">
 					<div class="modal-content">
@@ -87,15 +84,19 @@
 							<div class="field">
 								<label class="label">Name</label>
 								<p class="control">
-									<input class="input" type="text">
+									<input class="input" id="newAdminName" type="text">
+								</p>
+								<label class="label">Phone</label>
+								<p class="control">
+									<input class="input" id="newAdminPhone" type="text">
 								</p>
 								<label class="label">Email</label>
 								<p class="control">
-									<input class="input" type="email">
+									<input class="input" id="newAdminEmail" type="email">
 								</p>
 								<label class="label">Password</label>
 								<p class="control">
-									<input class="input" type="password">
+									<input class="input" id="newAdminPassword" type="password">
 								</p>
 							</div>
 						</form>
