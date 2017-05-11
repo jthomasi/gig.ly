@@ -74,12 +74,16 @@ $(document).ready(function(){
 	$("#submitWorkersKey").on("click", function(event){
 
 		event.preventDefault();
+		$(".eventInfo").empty();
 
 		var key = $("#key").val();
 
 		// null value check
 		if (key == ""){
-			//still toggling this modal, but not moving to ajax. Need to add warning about null values to be revealed in modal
+			var modalBody = $(".eventInfo");
+			var alertMsg = $("<p>");
+			alertMsg.text("Please enter a key.");
+			modalBody.append(alertMsg);
 			return;
 		}
 		else {
