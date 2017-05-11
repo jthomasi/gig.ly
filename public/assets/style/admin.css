@@ -21,9 +21,9 @@ html {
 
 #admin-banner {
 	padding-top:50px;
-	background-color: #A9B4D5;
 	color: black;
 	position:relative;
+	text-align:center;
 }
 
 #admin-banner span {
