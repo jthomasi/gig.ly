@@ -13,6 +13,13 @@ color: white;
 	text-align:center;
 }
 
+.admin-banner {
+	background-color: #D9E0F2;
+	color: black;
+}
+
+
+
 .main-buttons {
 	margin-top: 50px;
 
@@ -25,3 +32,19 @@ color: white;
 .key-button, .column {
 	display: inline-block !important;
 }
+
+.submit-key {
+	background-color:#52AC66;
+	color:white;
+}
+
+.submit-key:hover{
+	color:white !important;
+	border-color:black;
+}
+
+.main-buttons button:hover {
+	color:white !important;
+	border-color:black;
+}
+

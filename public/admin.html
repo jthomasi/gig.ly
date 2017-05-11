@@ -3,9 +3,7 @@
 <head>
 
 	<meta charset="UTF-8">
-
 	<title>gig.ly - Admins</title>
-
 	
 <!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 <link rtype="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
@@ -36,9 +34,10 @@
 </head>
 <body>
 
-
-	<h1 class="title">Gig.ly Admin Event Page</h1><br>
-
+<div id="admin-banner">
+	<span class="title">Gig.ly Admin Event Page</span><br>
+</div>
+<div id="admin-main">
 	<button class="button is-info gigButt" id = "gigButt">Create Gig</button>
 
 	<!--<button class="btn btn-primary" data-toggle="modal" data-target=".loginAdmin">Login Admin</button><br><br>-->
@@ -80,32 +79,32 @@
 		        	</form>
 		        </div>
 		        <div class="modal-card-foot">
-		            <button type="button" class="button is-dark gigButt">Close</button>
-		            <button type="button" id="createGig" class="button is-primary">Create</button>
+		            <button type="button" class="button gigButt">Close</button>
+		            <button type="button" id="createGig" class="button submit-key">Create</button>
 
 		        </div>
 		    </div>
 		</div>
 	</div>
 
-	<div id='calendar' style = 'width: 800px'></div>
+	<div id='calendar'></div>
 	
 	<div class="modal eventModal" id="eventModal">
 	<div class="modal-background"></div>
 	    <div class="modal-card">
 	        <div class="modal-content">
-	    	    <div class="modal-card-header">
+	    	    <div class="modal-card-head">
 		            <h5 class="modal-card-title">Event Information</h5>
 		        </div>
 		        <div class="modal-card-body" id="eventModalInfo">
 		        	
 		        </div>
 		        <div class="modal-card-foot">
-		            <button class="button is-dark closeGig">Close</button>
-		            <!-- <button type="button" class="btn btn-primary">Accept!</button> -->
+		            <button class="button closeGig">Close</button>
 		        </div>
 		    </div>
 		</div>
+	</div>
 	</div>
 
 	<script src="/js/admin.js"></script>

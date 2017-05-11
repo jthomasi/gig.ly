@@ -8,13 +8,15 @@ $(document).ready(function(){
 		$(".loginAdmin").fadeToggle("fast", "linear");
 	});
 
-	$(".access-key").click(function(){
+	$("#submitWorkersKey,.cancel-key").click(function(){
 		$("#workersKeyModal").fadeToggle("fast", "linear");
 	});
 
 	$("#createAdmin").on("click", function(event){
 
 		event.preventDefault();
+
+		$(".createAdmin").fadeToggle("fast", "linear");
 
 		var newName = $("#newAdminName").val().trim();
 		var newEmail = $("#newAdminEmail").val().trim();
