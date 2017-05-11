@@ -24,6 +24,15 @@ $(document).ready(function(){
         }
 	});
 
+	// $.ajax({
+ //        method: "GET",
+ //        url: "/api/events/"+req.params.id
+ //    })
+ //    .done(function(data) {
+ //        console.log("we made it"+data);
+       
+ //    });
+
 	//example array that would be in a DB
 	//will need to use either MySQL or
 	//local storage to test
@@ -56,7 +65,7 @@ $(document).ready(function(){
 		$("#eventModal").fadeToggle("fast", "linear");
 	});  
 
-	$("#createGig").on("click", function(event ) {
+	$("#createGig").on("click", function(event) {
 		$(".createGig").fadeToggle("fast", "linear");
 		event.preventDefault();
 
@@ -187,18 +196,49 @@ $(document).ready(function(){
 			duration: gigDuration,
 			description: gigText
 		}
+		var newGig_db = {
+			name: gigName,
+			location: gigLocation,
+			event_date: startString
+		}
 
 		gigArray.push(newGig);
 		gigInfo.push(newInfo);
 
+		var url = window.location.href;
+		var array = url.split('/');
+		var id = array[array.length-1];
+
+		console.log(id);
+
 		$('#calendar').fullCalendar( 'removeEventSources' );
-		//remove event sources because we we are pushing one object
-		//to an array and we will reload entire array of objects to
-		//calendar. W/o removing we will have duplicate events
+			//remove event sources because we we are pushing one object
+			//to an array and we will reload entire array of objects to
+			//calendar. W/o removing we will have duplicate events
 
 		$('#calendar').fullCalendar( 'addEventSource', gigArray );
 
-		console.log(newGig);
+		// $.ajax({
+	 //        method: "POST",
+	 //        url: "/api/events/"+id,
+	 //        data: newGig_db
+	 //    })
+	 //    .done(function(newGig) {
+	 //        console.log(data);
+	 //        $("#gigName").val("");
+	 //        $("#gigLocation").val("");
+	 //        $("#duration").val("");
+	 //        $("#startTime").val("");
+	 //        $("#gigText").val("");
+
+	 //        $('#calendar').fullCalendar( 'removeEventSources' );
+		// 	//remove event sources because we we are pushing one object
+		// 	//to an array and we will reload entire array of objects to
+		// 	//calendar. W/o removing we will have duplicate events
+
+		// 	$('#calendar').fullCalendar( 'addEventSource', gigArray );
+
+	 //    });
 
 	});
 

@@ -1,13 +1,15 @@
 $(document).ready(function(){
 
-	
-
 	$(".create-admin").click(function(){
 		$(".createAdmin").fadeToggle("fast", "linear");
 	});
 
-		$(".login-admin").click(function(){
+	$(".login-admin").click(function(){
 		$(".loginAdmin").fadeToggle("fast", "linear");
+	});
+
+	$(".access-key").click(function(){
+		$("#workersKeyModal").fadeToggle("fast", "linear");
 	});
 
 	$("#createAdmin").on("click", function(event){
@@ -19,7 +21,6 @@ $(document).ready(function(){
 		var newPhone = $("#newAdminPhone").val().trim();
         newPhone = newPhone.replace(/\D+/g, "");
         console.log(newPhone);
-
 
 		var newPassword = $("#newAdminPassword").val().trim();
 
@@ -34,7 +35,7 @@ $(document).ready(function(){
 
 		$.ajax({
 	        method: "POST",
-	        url: "/api/admins",
+	        url: "/api/admin",
 	        data: newAdmin
 	    })
 	    .done(function(data) {
@@ -43,6 +44,7 @@ $(document).ready(function(){
 	        $("#newAdminEmail").val("");
 	        $("#newAdminPhone").val("");
 	        $("#newAdminPassword").val("");
+	        window.location.href = "/admin/" + data.id;
 	    });
 
 	});
@@ -69,27 +71,44 @@ $(document).ready(function(){
 
 	});
 
-	$("#submitKey").on("click", function(event){
+	$("#submitWorkersKey").on("click", function(event){
 
 		event.preventDefault();
 
-		var key = $("#key").val().trim();
+		var key = $("#key").val();
 
-		console.log(key);
+		// null value check
+		if (key == ""){
+			//still toggling this modal, but not moving to ajax. Need to add warning about null values to be revealed in modal
+			return;
+		}
+		else {
+			key.trim();
+			$.ajax({
+		        method: "GET",
+		        url: "/api/events/"+key,
+		        data: key
+		    })
+		    .done(function(data) {
+		        var modalBody = $(".eventInfo");
+				var gig = $("<ul>");
+				var eventTitle = $("<li>");
+				var eventTime = $("<li>");
+				var eventLocation = $("<li>");
+				var creator = $("<li>");
 
-		$.ajax({
-	        method: "GET",
-	        url: "/api/events/"+key,
-	        data: key
-	    })
-	    .done(function(data) {
-	        console.log("yay");
-	        console.log(data);
-	    });
+				eventTitle.text(data[0].name);
+				eventTime.text("When: "+data[0].event_date);
+				eventLocation.text("Where: "+data[0].location);
+				creator.text("Created By: "+data[0].Admin.name);
 
-	})
+				gig.append(eventTitle,eventTime,eventLocation,creator);
 
+				modalBody.append(gig);
 
+		    });
+		}
+	});
 
 	function validatePassword(data, loginPassword) {
 		console.log(data);
@@ -103,7 +122,3 @@ $(document).ready(function(){
     	}
 	}
 });
-
-
-
-

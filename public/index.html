@@ -19,7 +19,7 @@
 					<h1 class="title">Gig.ly</h1>
 					<h2 class="subtitle">
 					You have a crew, and stuff to do.<br>
-					Schedule easily with gig.ly :)
+					Schedule easily with Gig.ly :)
 					</h2>
 				</div>
 			</div>
@@ -38,10 +38,10 @@
 			</div>
 
 					<!-- Access key entry for workers -->
-			<div class="columns submitKey">
+			<div class="columns accessKey">
 				<div class="key-button column is-12">
 					
-					<button class="button index-button is-medium access-key" id="submitKey">Submit Key</button>
+					<button class="button index-button is-medium access-key" id="submitWorkersKey">Submit Key</button>
 					<br><br>
 					<input class="input column is-half is offset-one-quarter" name="key" id="key" type="text" placeholder="If you received an access key, enter it here :)">
 					
@@ -63,15 +63,19 @@
 							<div class="field">
 								<label class="label">Name</label>
 								<p class="control">
-									<input class="input" type="text">
+									<input class="input" id="newAdminName" type="text">
+								</p>
+								<label class="label">Phone</label>
+								<p class="control">
+									<input class="input" id="newAdminPhone" type="text">
 								</p>
 								<label class="label">Email</label>
 								<p class="control">
-									<input class="input" type="email">
+									<input class="input" id="newAdminEmail" type="email">
 								</p>
 								<label class="label">Password</label>
 								<p class="control">
-									<input class="input" type="password">
+									<input class="input" id="newAdminPassword" type="password">
 								</p>
 							</div>
 						</form>
@@ -116,32 +120,29 @@
 			
 
 			<!-- Access key entry for workers -->
-			<div class="container columns submitKey">
+			<!-- <div class="container columns submitKey">
 				<div class="key-button column is-10 is-offset-one-quarter">
 				
 					<button class="button is-dark access-key" id="submitKey">Submit Key</button>
 					<input class="input column is-half" name="key" type="text" placeholder="If you received an access key, enter it here :)">
 					
 				</div>
-				</div>
-
-				<!-- Access key modal -->
-				<div class="modal access-key">
+			</div> -->
 
 			<!-- Access key modal -->
-			<div class="modal access-key">
+			<div class="modal access-key" id="workersKeyModal">
 				<div class="modal-background"></div>
 				<div class="modal-card">
 					<div class="modal-content">
 						<div class="modal-card-header">
 							<h5 class="modal-card-title" >Event Information</h5>
 						</div>
-						<div class="modal-card-body">
+						<div class="modal-card-body eventInfo">
+
 						</div>
 						<div class="modal-card-foot">
 							<button type="button" class="button is-dark">Accept!</button>
-							<button class="button is-dark access-key">Cancel</button>
-							<button class="button is-dark">Accept!</button>
+							<button class="button is-dark">Cancel</button>
 						</div>
 					</div>
 				</div>
