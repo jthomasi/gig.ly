@@ -47,6 +47,11 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1, 100]
       }
+    },
+    gigTaken: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   },
     // Here we'll pass a second "classMethods" object into the define method

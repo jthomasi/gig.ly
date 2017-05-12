@@ -38,18 +38,6 @@ $(document).ready(function(){
 					description: "Location: Austin, TX | Duration: 2 hours | Description: A fun little meet up for singles!"
 		        }
 		    ]
-
-	$.ajax({
-	    method: "GET",
-	    url: "/api/adminEvents/2",
-	}).done(function(data) {
-		console.log("get data from events api");
-		console.log(data);
-	        gigArray = data;
-	        $('#calendar').fullCalendar( 'addEventSource', gigArray );	
-	    });
-
-
 	var gigInfo = [
 
 		{
@@ -59,7 +47,44 @@ $(document).ready(function(){
 			description: "A fun place to meet up for singles!"
 		}
 
-	];
+	];		    
+	var url = window.location.href;
+	var array = url.split('/');
+	console.log(array);
+	var id = array[4];
+
+	$.ajax({
+	    method: "GET",
+	    url: "/api/adminEvents/" + id,
+	}).done(function(data) {
+		console.log("get data from events api");
+		console.log(data);
+			for(var i=0; i< data.length; i++) {
+				var eventTitle = data[i].name;
+				var eventStart = data[i].start;
+				var eventDescription = data[i].location + " | ";
+				eventDescription += data[i].duration + " | " ;
+				eventDescription += data[i].details;
+				var singleEvent = {
+					title: eventTitle,
+					start: eventStart,
+					description: eventDescription
+				};
+				var singleGigInfo = {
+					title: eventTitle,
+					location: data[i].location,
+					duration: data[i].duration,
+					description: data[i].details
+				}
+				gigArray.push(singleEvent);
+				gigInfo.push(singleGigInfo)
+			}
+	        // gigArray = data;
+	        $('#calendar').fullCalendar( 'addEventSource', gigArray );	
+	    });
+
+
+
 
 	// $('#calendar').fullCalendar( 'addEventSource', gigArray );	
 
@@ -197,7 +222,7 @@ $(document).ready(function(){
 			duration: gigDuration,
 			location: gigLocation,
 			details: gigText,
-			AdminId: 1
+			AdminId: id
 		};
 
 		var newGig = {
@@ -233,7 +258,7 @@ $(document).ready(function(){
 	        $("#startTime").val("");
 	        $("#duration").val("");
 	        $("#gigText").val("");
-	        window.location.href = "/admin/" + data.id;
+	        window.location.href = "/admin/" + id;
 	    });
 
 
@@ -245,12 +270,12 @@ $(document).ready(function(){
 		// }
 		console.log("new_gig");
 		console.log(newGig);
-		gigArray.push(newGig);
-		gigInfo.push(newInfo);
+		// gigArray.push(newGig);
+		// gigInfo.push(newInfo);
 
-		var url = window.location.href;
-		var array = url.split('/');
-		var id = array[array.length-1];
+		// var url = window.location.href;
+		// var array = url.split('/');
+		// var id = array[array.length-1];
 
 		console.log(id);
 
