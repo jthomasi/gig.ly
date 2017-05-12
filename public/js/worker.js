@@ -1,10 +1,14 @@
+// var accountSid = 'AC46bd7703d82e06f7b182c310775accc5';
+// var authToken = '186724f2393bb53c134bc974b483d1b2';
+// var client = require('twilio')(accountSid, authToken);
+
 $(document).ready(function(){
 
 	var gigArray  = [
 		        {
 		            title  : "Test Gig1",
 		            start  : '2017-05-25T13:30:00',
-		            description: 'sgsegs',
+		            description: 'Test gig in HTWON. GET YOUR SCREWSTON ON',
 		            duration: '4',
 		            location: 'Houston, TX',
 		            gigTaken: false,
@@ -14,7 +18,7 @@ $(document).ready(function(){
 		        {
 		            title  : "Tasting",
 		            start  : '2017-06-07T12:30:00',
-		            description: 'segse',
+		            description: 'This tasting will be located at the HEB near UT Campus. Brand Ambassador is expected to work for 3 hours, not including the time it takes to set up and tear down demo equipment',
 		            duration: '3',
 		            location: 'HEB (1000 E 41st St)',
 		            gigTaken: true,
@@ -24,7 +28,7 @@ $(document).ready(function(){
 		        {
 		            title  : "Demo",
 		            start  : '2017-06-07T20:30:00',
-		            description: 'segse',
+		            description: 'Demo at Sprouts. Call 713-151-1616 for more info.',
 		            duration: '2',
 		            location: 'Sprouts',
 		            gigTaken: false,
@@ -34,12 +38,23 @@ $(document).ready(function(){
 
 	var jobs = $("#jobs");
 
+	$(".closeGig").click(function(){
+		$("#gigIt").fadeToggle("fast", "linear");
+	});
+
+	$(".closeInfo").click(function(){
+		$("#gigInfo").fadeToggle("fast", "linear");
+	});
+
+	function gigAvailability () {
+
 	//if there are no gigs scheduled
 	if (gigArray.length < 1) {
 		jobs.append('<div class = "notification is-warning">Your gig employer has not scheduled any gigs!</div>');
 	}
 
 	else {
+		jobs.empty();
 
 	// if there are any gigs, we will loop through them and append as we go
 	// Need to convert from military time to standard time as loop
@@ -49,12 +64,6 @@ $(document).ready(function(){
 		var militaryHour = gigArray[i].start[11] + gigArray[i].start[12];
 		var noon;
 		var displayStyle;
-
-		//could do whole string this way that way we wouldn't have to append button to booked gigs
-		if (gigArray[i].gigTaken === true)
-			displayStyle = '<div class = "notification is-warning">' + gigId + ". GIG BOOKED! ";
-		else
-			displayStyle = '<div class = "notification is-primary">' + gigId + ". ";
 
 		if (militaryHour >= 12)
 			noon = "p";
@@ -77,18 +86,101 @@ $(document).ready(function(){
 		console.log(standardHour);
 
 		//append all data from gigArray onto html page
-		jobs.append(displayStyle
-		+ gigArray[i].title + " || "
-		+ gigArray[i].location + "<br>"
-		+ gigArray[i].start[5] + gigArray[i].start[6] + " / "
-		+ gigArray[i].start[8] + gigArray[i].start[9] + " / "
-		+ gigArray[i].start[0] + gigArray[i].start[1] + gigArray[i].start[2] + gigArray[i].start[3]
-		+ " || " + standardHour + ":"
-		+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
-		+ "This gig is approximately " + gigArray[i].duration + " hours long."
-		+ '</div><br>');
+		if (gigArray[i].gigTaken === true) {
+			displayStyle = '<div class = "notification is-warning">' + gigId + ". "
+			+ gigArray[i].title + " || "
+			+ gigArray[i].location + "<br>"
+			+ gigArray[i].start[5] + gigArray[i].start[6] + " / "
+			+ gigArray[i].start[8] + gigArray[i].start[9] + " / "
+			+ gigArray[i].start[0] + gigArray[i].start[1] + gigArray[i].start[2] + gigArray[i].start[3]
+			+ " || " + standardHour + ":"
+			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
+			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
+			+ '<a class="button is-danger">Gig Taken!</a>  <a class="button is-info gigInfo" data-index = "'+i+'">Info</a>'
+			+ '</div><br>';
+		}
+		else {
+			displayStyle = '<div class = "notification is-primary">' + gigId + ". "
+			+ gigArray[i].title + " || "
+			+ gigArray[i].location + "<br>"
+			+ gigArray[i].start[5] + gigArray[i].start[6] + " / "
+			+ gigArray[i].start[8] + gigArray[i].start[9] + " / "
+			+ gigArray[i].start[0] + gigArray[i].start[1] + gigArray[i].start[2] + gigArray[i].start[3]
+			+ " || " + standardHour + ":"
+			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
+			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
+			+ '<a class="button is-light gigIt" data-index = "'+i+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "'+i+'">Info</a>'
+			+ '</div><br>';
+		}
+		jobs.append(displayStyle);
 	}
+	$('.gigIt').each(function(){
+		$(this).on("click", function(event){
+			event.preventDefault();
+			$("#gigIt").fadeToggle("fast, linear");
+			var gigNumber = $(this).data('index');
+			$("#worker-gig").val(gigNumber);
+			//gigArray[$(this).data('index')].gigTaken = false;
+			//we change gigTaken to false, would need to happen to database for it to update correctly.
+			//console.log(gigArray[$(this).data('index')].gigTaken);
+			//setTimeout(function(){
+				//gigAvailability();}, 500);
+			//gigAvailability();
+		})
+	})
+
+	$("#confirmGig").on("click", function(ev){
+		ev.preventDefault();
+		var gigNumber = +$("#worker-gig").val();
+		var workerName = $("#workerName").val().trim();
+		var workerNumber = $("#workerNumber").val().trim();
+		var workerEmail = $("#workerEmail").val().trim();
+		console.log(workerName);
+		console.log(gigArray[gigNumber].title);
+		gigArray[gigNumber].gigTaken = false;
+		client.messages.create({
+			to: "+16502917670",
+			from: "+16506515374",
+			body: "Hi there, " + workerName + " would like to work your gig: " + gigArray[gigNumber].title + ". Their number is " + workerNumber + " and their email is " + workerEmail + ".",
+			mediaUrl: "http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg",
+			}, function(err, message){
+				console.log(message);
+		});
+		$("#gigIt").fadeToggle("fast, linear");
+	})
+
+	$('.gigInfo').each(function(){
+		$(this).on("click", function(event){
+			event.preventDefault();
+			$("#gigModalInfo").empty();
+			var modalBody = $("#gigModalInfo");
+			modalBody.append(gigArray[$(this).data('index')].description);
+			$("#gigInfo").fadeToggle("fast, linear");
+		})
+	})
 }
+
+}
+
+gigAvailability();
+
+// $('.gigIt').each(function(){
+// 	$(this).on("click", function(event){
+// 		//event.preventDefault();
+// 		// if ($(this).('#gigIt' + gigId))
+// 		console.log("Gig " + $(this).data('index') + "!");
+// 		gigArray[$(this).data('index')].gigTaken = false;
+// 		gigAvailability();
+// 	})
+// })
+
+// $('.gigInfo').each(function(){
+// 	$(this).on("click", function(event){
+// 		event.preventDefault();
+// 		// if ($(this).('#gigIt' + gigId))
+// 		console.log(gigArray[$(this).data('index')].description + "!");
+// 	})
+// })
 
 //still need to append a dynamic button for accepting gigs
 //2 buttons, one for showing description of event and other is for accepting

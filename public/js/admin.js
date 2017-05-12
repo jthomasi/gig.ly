@@ -26,8 +26,6 @@ $(document).ready(function(){
         }
 	});
 
-
-
 	//example array that would be in a DB
 	//will need to use either MySQL or
 	//local storage to test
@@ -86,11 +84,20 @@ $(document).ready(function(){
 
 
 
+	var url = window.location.href;
+	var array = url.split('/');
+	var id = array[array.length-1];
+
+	$("#logoutBtn").click(function(){
+		window.location.href = "/";
+	});
+	
+
 	// $('#calendar').fullCalendar( 'addEventSource', gigArray );	
 
 	$(".gigButt").click(function(){
 		$(".createGig").fadeToggle("fast", "linear");
-	});	  
+	});
 
 	$(".closeGig").click(function(){
 		$("#eventModal").fadeToggle("fast", "linear");
@@ -107,7 +114,7 @@ $(document).ready(function(){
 		var gigMonth = $("#datepicker").val()[0] + $("#datepicker").val()[1];
 		var gigDay = $("#datepicker").val()[3] + $("#datepicker").val()[4];
 		var gigStart = $("#startTime");
-		var gigDuration = $("#duration").val().trim()+" hours";
+		var gigDuration = $("#duration").val().trim()+;
 		var gigText = $("#gigText").val().trim();
 		var gigDescription = "Location: "+gigLocation+" | Duration: "+gigDuration+" | Description: "+gigText;
 
