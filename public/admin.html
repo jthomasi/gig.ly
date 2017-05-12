@@ -38,6 +38,7 @@
 	<span class="title">Events</span><br>
 </div>
 <div id="admin-main">
+	<button class="button is-info logout" id = "logoutBtn">Logout</button>
 	<button class="button is-info gigButt" id = "gigButt">Create Gig</button>
 
 	<div class="modal createGig">
@@ -65,10 +66,32 @@
 			        		<label class="label">Start Time: </label>
 			        		<input class="input" type="text" id="startTime" name="startTime" placeholder="Click to select time"></p>
 
-			        		<p class="control">
-			        		<label class="label">
-			        		Duration: </label>
-			        		<input class="input" type="text" id="duration" name="duration" placeholder="Click to select time"></p>
+			        		<div class="field">
+                            <label class="label">Gig Duration (Hours)</label>
+                                <p class="control">
+                                    <span class="select">
+                                        <select id = "duration">
+                                        	<option>Please select an event duration</option>
+                                            <option val="1">1 Hour</option>
+                                            <option val="2">2 Hours</option>
+                                            <option val="3">3 Hours</option>
+                                            <option val="4">4 Hours</option>
+                                            <option val="5">5 Hours</option>
+                                            <option val="6">6 Hours</option>
+                                            <option val="7">7 Hours</option>
+                                            <option val="8">8 Hours</option>
+                                            <option val="9">9 Hours</option>
+                                            <option val="10">10 Hours</option>
+                                            <option val="11">11 Hours</option>
+                                            <option val="12">12 Hours</option>
+                                            <option val="13">13 Hours</option>
+                                            <option val="14">14 Hours</option>
+                                            <option val="15">15 Hours</option>
+                                            <option val="16">16 Hours</option>
+                                        </select>
+                                    </span>
+                                </p>
+                            </div>
 			        		
 			        		<p class="control">
 			        		<label class="label">Description: </label>

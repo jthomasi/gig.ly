@@ -26,8 +26,6 @@ $(document).ready(function(){
         }
 	});
 
-
-
 	//example array that would be in a DB
 	//will need to use either MySQL or
 	//local storage to test
@@ -61,11 +59,20 @@ $(document).ready(function(){
 
 	];
 
+	var url = window.location.href;
+	var array = url.split('/');
+	var id = array[array.length-1];
+
+	$("#logoutBtn").click(function(){
+		window.location.href = "/";
+	});
+	
+
 	// $('#calendar').fullCalendar( 'addEventSource', gigArray );	
 
 	$(".gigButt").click(function(){
 		$(".createGig").fadeToggle("fast", "linear");
-	});	  
+	});
 
 	$(".closeGig").click(function(){
 		$("#eventModal").fadeToggle("fast", "linear");
