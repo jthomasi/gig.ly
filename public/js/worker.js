@@ -1,6 +1,6 @@
-var accountSid = 'AC46bd7703d82e06f7b182c310775accc5';
-var authToken = '186724f2393bb53c134bc974b483d1b2';
-var client = require('twilio')(accountSid, authToken);
+// var accountSid = 'AC46bd7703d82e06f7b182c310775accc5';
+// var authToken = '186724f2393bb53c134bc974b483d1b2';
+// var client = require('twilio')(accountSid, authToken);
 
 $(document).ready(function(){
 
