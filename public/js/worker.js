@@ -4,37 +4,67 @@
 
 $(document).ready(function(){
 
-	var gigArray  = [
-		        {
-		            title  : "Test Gig1",
-		            start  : '2017-05-25T13:30:00',
-		            description: 'Test gig in HTWON. GET YOUR SCREWSTON ON',
-		            duration: '4',
-		            location: 'Houston, TX',
-		            gigTaken: false,
-		            allDay : false // will make the time show
-		        },
+	// var gigArray  = [
+	// 	        {
+	// 	            title  : "Test Gig1",
+	// 	            start  : '2017-05-25T13:30:00',
+	// 	            description: 'Test gig in HTWON. GET YOUR SCREWSTON ON',
+	// 	            duration: '4',
+	// 	            location: 'Houston, TX',
+	// 	            gigTaken: false,
+	// 	            allDay : false // will make the time show
+	// 	        },
 
-		        {
-		            title  : "Tasting",
-		            start  : '2017-06-07T12:30:00',
-		            description: 'This tasting will be located at the HEB near UT Campus. Brand Ambassador is expected to work for 3 hours, not including the time it takes to set up and tear down demo equipment',
-		            duration: '3',
-		            location: 'HEB (1000 E 41st St)',
-		            gigTaken: true,
-		            allDay : false // will make the time show
-		        },
+	// 	        {
+	// 	            title  : "Tasting",
+	// 	            start  : '2017-06-07T12:30:00',
+	// 	            description: 'This tasting will be located at the HEB near UT Campus. Brand Ambassador is expected to work for 3 hours, not including the time it takes to set up and tear down demo equipment',
+	// 	            duration: '3',
+	// 	            location: 'HEB (1000 E 41st St)',
+	// 	            gigTaken: true,
+	// 	            allDay : false // will make the time show
+	// 	        },
 
-		        {
-		            title  : "Demo",
-		            start  : '2017-06-07T20:30:00',
-		            description: 'Demo at Sprouts. Call 713-151-1616 for more info.',
-		            duration: '2',
-		            location: 'Sprouts',
-		            gigTaken: false,
-		            allDay : false // will make the time show
-		        }
-		    ]
+	// 	        {
+	// 	            title  : "Demo",
+	// 	            start  : '2017-06-07T20:30:00',
+	// 	            description: 'Demo at Sprouts. Call 713-151-1616 for more info.',
+	// 	            duration: '2',
+	// 	            location: 'Sprouts',
+	// 	            gigTaken: false,
+	// 	            allDay : false // will make the time show
+	// 	        }
+	// 	    ]
+	var gigArray = [];
+	var url = window.location.href;
+	var array = url.split('/');
+	console.log("urlArray");
+	console.log(array);
+	var id = array[4];
+
+	$.ajax({
+	    method: "GET",
+	    url: "/api/adminEvents/" + id,
+	}).done(function(data) {
+		console.log("get data from events api");
+		console.log(data);
+			for(var i=0; i< data.length; i++) {
+
+				var singleEvent = {
+					eventId: data[i].id,
+					title: data[i].name,
+					start: data[i].start,
+					description: data[i].details,
+					location: data[i].location,
+					gigTaken: data[i].gigTaken,
+					duration: data[i].duration
+				};
+				console.log(singleEvent);
+				gigArray.push(singleEvent);
+				console.log("gig array");
+				console.log(gigArray);
+			}
+	    
 
 	var jobs = $("#jobs");
 
@@ -59,7 +89,9 @@ $(document).ready(function(){
 	// if there are any gigs, we will loop through them and append as we go
 	// Need to convert from military time to standard time as loop
 	for (var i = 0; i < gigArray.length; i++) {
-		var gigId = i + 1;
+
+		var gigId = gigArray[i].eventId;
+		console.log(i + " gigId " + gigId);
 		var standardHour;
 		var militaryHour = gigArray[i].start[11] + gigArray[i].start[12];
 		var noon;
@@ -96,7 +128,7 @@ $(document).ready(function(){
 			+ " || " + standardHour + ":"
 			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
 			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
-			+ '<a class="button is-danger">Gig Taken!</a>  <a class="button is-info gigInfo" data-index = "'+i+'">Info</a>'
+			+ '<a class="button is-danger">Gig Taken!</a>  <a class="button is-info gigInfo" data-index = "' + gigArray[i].eventId+'">Info</a>'
 			+ '</div><br>';
 		}
 		else {
@@ -109,7 +141,7 @@ $(document).ready(function(){
 			+ " || " + standardHour + ":"
 			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
 			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
-			+ '<a class="button is-light gigIt" data-index = "'+i+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "'+i+'">Info</a>'
+			+ '<a class="button is-light gigIt" data-index = "' + gigArray[i].eventId+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "' + gigArray[i].eventId+'">Info</a>'
 			+ '</div><br>';
 		}
 		jobs.append(displayStyle);
@@ -126,6 +158,9 @@ $(document).ready(function(){
 			//setTimeout(function(){
 				//gigAvailability();}, 500);
 			//gigAvailability();
+
+
+
 		})
 	})
 
@@ -137,15 +172,23 @@ $(document).ready(function(){
 		var workerEmail = $("#workerEmail").val().trim();
 		console.log(workerName);
 		console.log(gigArray[gigNumber].title);
-		gigArray[gigNumber].gigTaken = false;
-		client.messages.create({
-			to: "+16502917670",
-			from: "+16506515374",
-			body: "Hi there, " + workerName + " would like to work your gig: " + gigArray[gigNumber].title + ". Their number is " + workerNumber + " and their email is " + workerEmail + ".",
-			mediaUrl: "http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg",
-			}, function(err, message){
-				console.log(message);
-		});
+		// gigArray[gigNumber].gigTaken = false;
+		// client.messages.create({
+		// 	to: "+16502917670",
+		// 	from: "+16506515374",
+		// 	body: "Hi there, " + workerName + " would like to work your gig: " + gigArray[gigNumber].title + ". Their number is " + workerNumber + " and their email is " + workerEmail + ".",
+		// 	mediaUrl: "http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg",
+		// 	}, function(err, message){
+		// 		console.log(message);
+		// });
+
+		$.ajax({
+		    method: "PUT",
+		    url: "/api/adminEvents/" + gigNumber,
+		}).done(function(data) {
+			console.log(gigId + " gigId")
+			window.location.href = "/worker/" + id;
+		    });
 		$("#gigIt").fadeToggle("fast, linear");
 	})
 
@@ -185,5 +228,5 @@ gigAvailability();
 //still need to append a dynamic button for accepting gigs
 //2 buttons, one for showing description of event and other is for accepting
 //should pop up a modal that twilio uses to send to ADMIN's phone number
-
+});
 });

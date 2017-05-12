@@ -60,12 +60,13 @@ module.exports = function(app) {
 
     console.log(req.body);
 
-    var updatedVersion = {
-      gigTaken: true
-    }
-    db.Event.update(updatedVersion, {
+    db.Event.update(
+      {
+        gigTaken: true
+      }
+      , {
       where: {
-        id: req.body.id
+        id: req.params.eventId
       }
     }).then(function(dbEvent) {
       res.json(dbEvent);
