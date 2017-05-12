@@ -56,17 +56,21 @@ module.exports = function(app) {
   // });  
 
   // PUT route for updating an event
-  app.put("/api/events", function(req, res) {
-    db.Job.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbEvent) {
-        res.json(dbEvent);
-      });
-  });
+  app.put("/api/adminEvents/:eventId", function(req, res) {
+
+    console.log(req.body);
+
+    var updatedVersion = {
+      gigTaken: true
+    }
+    db.Event.update(updatedVersion, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbEvent) {
+      res.json(dbEvent);
+    });
+  });  
 
   // app.get("/api/events/:id", function(req, res) {
   //   db.Event.findOne({
