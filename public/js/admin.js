@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	var currentAdminId;
+
 	//initialize starting time for gig input box as a timepicker
 	$('#startTime').timepicker({ 'scrollDefault': 'now' });
 	//initialize end time for gig input box as a timepicker
@@ -34,18 +36,74 @@ $(document).ready(function(){
 					description: "Location: Austin, TX | Duration: 2 hours | Description: A fun little meet up for singles!"
 		        }
 		    ]
+	var gigInfo = [
 
-	$('#calendar').fullCalendar( 'addEventSource', gigArray );	
+		{
+			title: "Test Gig",
+			location: "Austin,TX",
+			duration: "2 Hours",
+			description: "A fun place to meet up for singles!"
+		}
+
+	];		    
+	var url = window.location.href;
+	var array = url.split('/');
+	console.log(array);
+	var id = array[4];
+
+	$.ajax({
+	    method: "GET",
+	    url: "/api/adminEvents/" + id,
+	}).done(function(data) {
+		console.log("get data from events api");
+		console.log(data);
+			for(var i=0; i< data.length; i++) {
+				var eventTitle = data[i].name;
+				var eventStart = data[i].start;
+				var eventDescription = data[i].location + " | ";
+				eventDescription += data[i].duration + " | " ;
+				eventDescription += data[i].details;
+				var singleEvent = {
+					title: eventTitle,
+					start: eventStart,
+					description: eventDescription
+				};
+				var singleGigInfo = {
+					title: eventTitle,
+					location: data[i].location,
+					duration: data[i].duration,
+					description: data[i].details
+				}
+				gigArray.push(singleEvent);
+				gigInfo.push(singleGigInfo)
+			}
+	        // gigArray = data;
+	        $('#calendar').fullCalendar( 'addEventSource', gigArray );	
+	    });
+
+
+
+
+	var url = window.location.href;
+	var array = url.split('/');
+	var id = array[array.length-1];
+
+	$("#logoutBtn").click(function(){
+		window.location.href = "/";
+	});
+	
+
+	// $('#calendar').fullCalendar( 'addEventSource', gigArray );	
 
 	$(".gigButt").click(function(){
 		$(".createGig").fadeToggle("fast", "linear");
-	});	  
+	});
 
 	$(".closeGig").click(function(){
 		$("#eventModal").fadeToggle("fast", "linear");
 	});  
 
-	$("#createGig").on("click", function(event ) {
+	$("#createGig").on("click", function(event) {
 		$(".createGig").fadeToggle("fast", "linear");
 		event.preventDefault();
 
@@ -56,9 +114,7 @@ $(document).ready(function(){
 		var gigMonth = $("#datepicker").val()[0] + $("#datepicker").val()[1];
 		var gigDay = $("#datepicker").val()[3] + $("#datepicker").val()[4];
 		var gigStart = $("#startTime");
-		var gigHours = $("#gigHours").val();
-		var gigEnd = $("#endTime");
-		var gigDuration = $("#duration").val().trim()+" hours";
+		var gigDuration = $("#duration").val().trim()+;
 		var gigText = $("#gigText").val().trim();
 		var gigDescription = "Location: "+gigLocation+" | Duration: "+gigDuration+" | Description: "+gigText;
 
@@ -167,22 +223,97 @@ $(document).ready(function(){
 
 		//now we do the same thing with end time input box
 
+		var newSqlGig = {
+			name: gigName,
+			start: startString,
+			duration: gigDuration,
+			location: gigLocation,
+			details: gigText,
+			AdminId: id
+		};
+
 		var newGig = {
 			title: gigName,
 			start: startString,
 			description: gigDescription
 		}
+		var newInfo = {
+			title: gigName,
+			location: gigLocation,
+			duration: gigDuration,
+			description: gigText
+		}
+		var newGig_db = {
+			name: gigName,
+			location: gigLocation,
+			event_date: startString
+		}
 
-		gigArray.push(newGig);
+
+
+
+		$.ajax({
+	        method: "POST",
+	        url: "/api/events/:id",
+	        data: newSqlGig
+	    })
+	    .done(function(data) {
+	        console.log(data);
+	        $("#gigName").val("");
+	        $("#gigLocation").val("");
+	        $("#datepicker").val("");
+	        $("#startTime").val("");
+	        $("#duration").val("");
+	        $("#gigText").val("");
+	        window.location.href = "/admin/" + id;
+	    });
+
+
+		// {
+		// 	title: "Test Gig",
+		// 	location: "Austin,TX",
+		// 	duration: "2 Hours",
+		// 	description: "A fun place to meet up for singles!"
+		// }
+		console.log("new_gig");
+		console.log(newGig);
+		// gigArray.push(newGig);
+		// gigInfo.push(newInfo);
+
+		// var url = window.location.href;
+		// var array = url.split('/');
+		// var id = array[array.length-1];
+
+		console.log(id);
 
 		$('#calendar').fullCalendar( 'removeEventSources' );
-		//remove event sources because we we are pushing one object
-		//to an array and we will reload entire array of objects to
-		//calendar. W/o removing we will have duplicate events
+			//remove event sources because we we are pushing one object
+			//to an array and we will reload entire array of objects to
+			//calendar. W/o removing we will have duplicate events
 
 		$('#calendar').fullCalendar( 'addEventSource', gigArray );
 
-		console.log(newGig);
+		// $.ajax({
+	 //        method: "POST",
+	 //        url: "/api/events/"+id,
+	 //        data: newGig_db
+	 //    })
+	 //    .done(function(newGig) {
+	 //        console.log(data);
+	 //        $("#gigName").val("");
+	 //        $("#gigLocation").val("");
+	 //        $("#duration").val("");
+	 //        $("#startTime").val("");
+	 //        $("#gigText").val("");
+
+	 //        $('#calendar').fullCalendar( 'removeEventSources' );
+		// 	//remove event sources because we we are pushing one object
+		// 	//to an array and we will reload entire array of objects to
+		// 	//calendar. W/o removing we will have duplicate events
+
+		// 	$('#calendar').fullCalendar( 'addEventSource', gigArray );
+
+	 //    });
 
 	});
 
@@ -191,13 +322,22 @@ $(document).ready(function(){
 		$("#eventModal").fadeToggle("fast", "linear");
 
 		var eventTitle = $(this).find('.fc-title').text();
+
+		for (var i=0;i<gigInfo.length;i++){
+			if (eventTitle == gigInfo[i].title){
+				var eventLocation = gigInfo[i].location;
+				var eventDuration = gigInfo[i].duration;
+				var eventDescription = gigInfo[i].description;
+			}
+		}
+
 		var eventTime = $(this).find('.fc-time').text();
 
-		displayGig(eventTitle, eventTime);
+		displayGig(eventTitle, eventTime, eventLocation, eventDuration, eventDescription);
 
 	});
 
-	function displayGig(title, time){
+	function displayGig(title, time, location, duration, description){
 
 		$("#eventModalInfo").empty();
 
@@ -205,11 +345,17 @@ $(document).ready(function(){
 		var gig = $("<ul>");
 		var eventTitle = $("<li>");
 		var eventTime = $("<li>");
+		var eventLocation = $("<li>");
+		var eventDuration = $("<li>");
+		var eventDescription = $("<li>");
 
 		eventTitle.text(title);
 		eventTime.text(time);
+		eventLocation.text(location);
+		eventDuration.text(duration);
+		eventDescription.text(description);
 
-		gig.append(eventTitle,eventTime);
+		gig.append(eventTitle,eventTime,eventLocation,eventDuration,eventDescription);
 
 		modalBody.append(gig);
 

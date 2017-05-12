@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Event = sequelize.define("Event", {
-    // Giving the Author model a name of type STRING
+    
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -8,17 +8,50 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 100]
       }
     },
+    start: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 20]
+      }
+    },
+    duration: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 10]
+      }
+    },    
     location: {
-      type : DataTypes.TEXT,
+      type : DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1, 100]
       }
     }, 
 
-    event_date: {
-      type: DataTypes.DATE, 
-      allowNull: false
+
+// title (string)
+// start (string)
+// duration (string)
+// location (string)
+// details (text)
+
+
+// gigDescription concatenatios duration, location and details
+
+
+    details: {
+      type : DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        len: [1, 100]
+      }
+    },
+    gigTaken: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   },
     // Here we'll pass a second "classMethods" object into the define method

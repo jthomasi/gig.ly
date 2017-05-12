@@ -19,49 +19,51 @@ INSERT INTO events
 
 
 SET name = "Lassie's Party",
+start: ,
+duration = "4",
 location = "Timmy's House",
-event_date = '2017-05-31',
+details = "this is the description"
 createdAt = NOW(),
 updatedAt = NOW(),
 AdminId =  (SELECT id FROM admins
   WHERE id = 1);
   
-  INSERT INTO events 
+--   INSERT INTO events 
 
 
-SET name = "Fright Fest",
-location = "Hangman's House of Horrors",
-event_date = '2017-06-01',
-createdAt = NOW(),
-updatedAt = NOW(),
-AdminId =  (SELECT id FROM admins
-  WHERE id = 2);
+-- SET name = "Fright Fest",
+-- location = "Hangman's House of Horrors",
+-- event_date = '2017-06-01',
+-- createdAt = NOW(),
+-- updatedAt = NOW(),
+-- AdminId =  (SELECT id FROM admins
+--   WHERE id = 2);
   
   
-    INSERT INTO events 
+--     INSERT INTO events 
 
 
-SET name = "Joe and Jane's Wedding",
-location = "Mt. Bonnel",
-event_date = '2017-06-15',
-createdAt = NOW(),
-updatedAt = NOW(),
-AdminId =  (SELECT id FROM admins
-  WHERE id = 3);
+-- SET name = "Joe and Jane's Wedding",
+-- location = "Mt. Bonnel",
+-- event_date = '2017-06-15',
+-- createdAt = NOW(),
+-- updatedAt = NOW(),
+-- AdminId =  (SELECT id FROM admins
+--   WHERE id = 3);
   
   
   
   
-INSERT INTO events 
+-- INSERT INTO events 
 
 
-SET name = "Kite Festival",
-location = "Zilker Park",
-event_date = '2017-06-12',
-createdAt = NOW(),
-updatedAt = NOW(),
-AdminId =  (SELECT id FROM admins
-  WHERE id = 4);
+-- SET name = "Kite Festival",
+-- location = "Zilker Park",
+-- event_date = '2017-06-12',
+-- createdAt = NOW(),
+-- updatedAt = NOW(),
+-- AdminId =  (SELECT id FROM admins
+--   WHERE id = 4);
     
   
   
