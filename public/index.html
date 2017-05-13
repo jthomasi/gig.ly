@@ -3,13 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>gig.ly</title>
-		
-		<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+
 		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rtype="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
 		<link type="text/css" rel="stylesheet" href="assets/bulma.css">
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
-		<!-- 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 	</head>
 	<body>
 		<!-- 	Main page header 	-->
@@ -50,7 +48,6 @@
 			<div class="modal access-key" id="workersKeyModal">
 				<div class="modal-background"></div>
 				<div class="modal-card">
-					<div class="modal-content">
 						<div class="modal-card-head">
 							<header class="modal-card-title">Submit Access Key</header>
 						</div>
@@ -63,7 +60,6 @@
 							<button class="button cancel-key">Cancel</button>
 							<button class="button submit-key" id="submitWorkersKey">Submit</button>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -72,15 +68,13 @@
 			<div class="modal createAdmin">
 				<div class="modal-background"></div>
 				<div class="modal-card">
-					<div class="modal-content">
 						<div class="modal-card-head">
 							<header class="modal-card-title">Create Admin Account
 							</header>
 							
 						</div>
-					</div>
 					<div class="modal-card-body">
-						<form id="adminInfoForm">
+						<form id="adminInfoForm" name="Form">
 							<div class="field">
 								<label class="label">Name</label>
 								<p class="control">
@@ -102,8 +96,8 @@
 						</form>
 					</div>
 					<div class="modal-card-foot">
-						<a class="button create-admin">Cancel</a>
-						<a id="createAdmin" class="button submit-key submit">Create</a>
+						<button class="button create-admin">Cancel</button>
+						<button id="createAdmin" class="button submit-key submit">Create</button>
 					</div>
 				</div>
 			</div>
@@ -111,7 +105,6 @@
 			<div class="modal loginAdmin">
 				<div class="modal-background"></div>
 				<div class="modal-card">
-					<div class="modal-content">
 						<div class="modal-card-head">
 							<h5 class="modal-card-title">Admin Login</h5>
 						</div>
@@ -135,7 +128,6 @@
 							<a class="button  login-admin">Cancel</a>
 							<a id="loginAdmin" class="button submit-key">Login</a>
 						</div>
-					</div>
 				</div>
 			</div>
 		<script type="text/javascript" src="js/index_js.js"></script>

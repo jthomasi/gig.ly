@@ -11,67 +11,67 @@
 	</head>
 	<body>
 		<!-- 	Worker page header 	-->
-<div id="worker-banner">
-	<button class="btn btn-primary glyphicon glyphicon-home btn-large"></button><br>
-	<span class="title">Gig.ly Event List</span><br>
-</div>
-<div>
-
-		<div id = "jobs"></div>
-
-		<!--module for sending admin worker contact info-->
-		<div class="modal gigItModal" id="gigIt">
-			<div class="modal-background"></div>
-	    	<div class="modal-card">
-	        	<div class="modal-content">
-	    	    	<div class="modal-card-head">
-		            	<h5 class="modal-card-title">Book this Gig!</h5>
-		        	</div>
-		        	<div class="modal-card-body">
-		        		<form id="eventInfoForm">
-		        			<div class="field">
-			        			<p class="control">
-			        			<label class="label">Name: </label>
-			        			<input class="input" type="text" id="workerName" name="workerName" placeholder="First and Last please!">
-			        			</p>
-			        			<p class="control">
-			        			<label class="label">Phone Number: </label>
-			        			<input class="input" type="text" id="workerNumber" name="workerNumber" placeholder="Make sure to leave your number!"></p>
-			        			<p class="control">
-			        			<label class="label">Email: </label>
-			        			<input class="input" type="text" id="workerEmail" name="workerEmail" placeholder="example@me.com"></p>
-			        			<input type="hidden" id="worker-gig" value="1">
-		        			</div>
-		        		</form>
-		        	</div>
-		        	<div class="modal-card-foot">
-		        		<button type="button" id="confirmGig" class="button is-primary">Submit</button>
-		            	<button class="button is-dark closeGig">Cancel</button>
-		            <!-- <button type="button" class="btn btn-primary">Accept!</button> -->
-		        	</div>
-		    	</div>
-			</div>
+		<div id="worker-banner">
+			<button class="button button-home">
+			<span class="icon">
+				<i class="fa fa-home"></i>
+			</span>
+			</button><br>
+			<div class="title">Event List</div><br>
 		</div>
-
-		<!--getting info DONE-->
-		<div class="modal gigInfoModal" id="gigInfo">
-			<div class="modal-background"></div>
-	    	<div class="modal-card">
-	        	<div class="modal-content">
-	    	    	<div class="modal-card-head">
-		            	<h5 class="modal-card-title">Gig Information</h5>
-		        	</div>
-		        	<div class="modal-card-body">
-		        	<div id="gigModalInfo"></div>
-		        	</div>
-		        	<div class="modal-card-foot">
-		            	<button class="button is-dark closeInfo">Close</button>
-		            <!-- <button type="button" class="btn btn-primary">Accept!</button> -->
-		        	</div>
-		    	</div>
-			</div>
-		</div>
-
-		<script type="text/javascript" src="/js/worker.js"></script>
-	</body>
-</html>
+		<div>
+			<div id = "jobs"></div>
+			<!--module for sending admin worker contact info-->
+			<div class="modal gigItModal" id="gigIt">
+				<div class="modal-background"></div>
+				<div class="modal-card">
+					<div class="modal-content">
+						<div class="modal-card-head">
+							<h5 class="modal-card-title">Book this Gig!</h5>
+						</div>
+						<div class="modal-card-body">
+							<form id="eventInfoForm">
+								<div class="field">
+									<p class="control">
+										<label class="label">Name: </label>
+										<input class="input" type="text" id="workerName" name="workerName" placeholder="First and Last please!">
+									</p>
+									<p class="control">
+										<label class="label">Phone Number: </label>
+										<input class="input" type="text" id="workerNumber" name="workerNumber" placeholder="Make sure to leave your number!"></p>
+										<p class="control">
+											<label class="label">Email: </label>
+											<input class="input" type="text" id="workerEmail" name="workerEmail" placeholder="example@me.com"></p>
+											<input type="hidden" id="worker-gig" value="1">
+										</div>
+									</form>
+								</div>
+								<div class="modal-card-foot">
+									<button type="button" id="confirmGig" class="button is-primary">Submit</button>
+									<button class="button is-dark closeGig">Cancel</button>
+									<!-- <button type="button" class="btn btn-primary">Accept!</button> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--getting info DONE-->
+					<div class="modal gigInfoModal" id="gigInfo">
+						<div class="modal-background"></div>
+						<div class="modal-card">
+							<div class="modal-content">
+								<div class="modal-card-head">
+									<h5 class="modal-card-title">Gig Information</h5>
+								</div>
+								<div class="modal-card-body">
+									<div id="gigModalInfo"></div>
+								</div>
+								<div class="modal-card-foot">
+									<button class="button is-dark closeInfo">Close</button>
+									<!-- <button type="button" class="btn btn-primary">Accept!</button> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript" src="/js/worker.js"></script>
+				</body>
+			</html>

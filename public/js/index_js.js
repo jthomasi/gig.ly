@@ -2,10 +2,19 @@ $(document).ready(function(){
 
 	$(".create-admin").click(function(){
 		$(".createAdmin").fadeToggle("fast", "linear");
+		$("#newAdminName").val("");
+		$("#newAdminPhone").val("");
+		$("#newAdminEmail").val("");
+		$("#newAdminPassword").val("");
 	});
 
 	$(".login-admin").click(function(){
+		$("#validationError").empty();
 		$(".loginAdmin").fadeToggle("fast", "linear");
+		$("#adminLoginPassword").val("");
+		$("#adminLoginEmail").val("");
+		$("#adminLoginPassword").removeClass("is-danger");
+		$("#adminLoginEmail").removeClass("is-danger");
 	});
 
 	$("#submitKey,.cancel-key").click(function(){
@@ -13,9 +22,7 @@ $(document).ready(function(){
 	});
 
 	$("#createAdmin").on("click", function(event){
-
 		event.preventDefault();
-
 		$(".createAdmin").fadeToggle("fast", "linear");
 
 		var newName = $("#newAdminName").val().trim();
@@ -68,13 +75,13 @@ $(document).ready(function(){
 	        url: "/api/admin/login/" + loginEmail
 	    })
 	    .done(function(data) {
-	    	validatePassword(data, loginPassword);
+	    	checkNull(loginEmail, loginPassword);
+	    	validatePassword(data, loginEmail,loginPassword);
 	    });
 
 	});
 
 	$("#submitWorkersKey").on("click", function(event){
-
 		event.preventDefault();
 		$(".eventInfo").empty();
 
@@ -82,44 +89,29 @@ $(document).ready(function(){
 
 		// null value check
 		if (key == ""){
+			var modalBody = $(".eventInfo");
+			var alertMsg = $("<p>");
+			alertMsg.text("Please enter a key.");
+			modalBody.append(alertMsg);
 			return;
 		}
 		else {
 			window.location.href = "/worker/" + key;
 		}
 
-		// if (key == ""){
-		// 	return;
-		// }
-		// else {
-		// 	key.trim();
-		// 	$.ajax({
-		//         method: "GET",
-		//         url: "/api/events/"+key,
-		//         data: key
-		//     })
-		//     .done(function(data) {
-		//         var modalBody = $(".eventInfo");
-		// 		var gig = $("<ul>");
-		// 		var eventTitle = $("<li>");
-		// 		var eventTime = $("<li>");
-		// 		var eventLocation = $("<li>");
-		// 		var creator = $("<li>");
-
-		// 		eventTitle.text(data[0].name);
-		// 		eventTime.text("When: "+data[0].event_date);
-		// 		eventLocation.text("Where: "+data[0].location);
-		// 		creator.text("Created By: "+data[0].Admin.name);
-
-		// 		gig.append(eventTitle,eventTime,eventLocation,creator);
-
-		// 		modalBody.append(gig);
-
-		//     });
-		// }
 	});
 
-	function validatePassword(data, loginPassword) {
+	function checkNull(loginEmail, loginPassword) {
+		if (loginEmail == "" || loginPassword == "") {
+			$("#validationError").append("<div>Invalid username or password</div>");
+			$("#adminLoginPassword").val("");
+			$("#adminLoginPassword").addClass("is-danger");
+			$("#adminLoginEmail").addClass("is-danger");
+		}
+	};
+
+	function validatePassword(data, loginEmail, loginPassword) {	
+	if (loginEmail !== "" && loginPassword !== "") {
 		console.log(data);
 		console.log(loginPassword);
     	if (data.password === loginPassword) {
@@ -127,7 +119,10 @@ $(document).ready(function(){
     		window.location.href = "/admin/" + data.id;
     	} else {
     		$("#validationError").append("<div>Invalid username or password</div>");
+    		$("#adminLoginPassword").addClass("is-danger");
         	$("#adminLoginPassword").val("");
     	}
 	}
+}
+
 });
