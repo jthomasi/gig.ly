@@ -48,7 +48,6 @@ $(document).ready(function(){
 			for(var i=0; i< data.length; i++) {
 
 				var singleEvent = {
-					id: i,
 					eventId: data[i].id,
 					title: data[i].name,
 					start: data[i].start,
@@ -121,7 +120,7 @@ $(document).ready(function(){
 
 		//append all data from gigArray onto html page
 		if (gigArray[i].gigTaken === true) {
-			displayStyle = '<div class = "notification is-info">' + gigId + ". "
+			displayStyle = '<div class = "notification is-info">' + (i+1) + ". "
 			+ gigArray[i].title + " || "
 			+ gigArray[i].location + "<br>"
 			+ gigArray[i].start[5] + gigArray[i].start[6] + " / "
@@ -130,11 +129,11 @@ $(document).ready(function(){
 			+ " || " + standardHour + ":"
 			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
 			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
-			+ '<a class="button is-danger">Gig Taken!</a>  <a class="button is-info gigInfo" data-index = "' + gigArray[i].eventId+'">Info</a>'
+			+ '<a class="button is-danger">Gig Taken!</a>  <a class="button is-info gigInfo" data-index = "' + i +'">Info</a>'
 			+ '</div><br>';
 		}
 		else {
-			displayStyle = '<div class = "notification is-primary">' + gigId + ". "
+			displayStyle = '<div class = "notification is-primary">' + (i+1) + ". "
 			+ gigArray[i].title + " || "
 			+ gigArray[i].location + "<br>"
 			+ gigArray[i].start[5] + gigArray[i].start[6] + " / "
@@ -143,7 +142,7 @@ $(document).ready(function(){
 			+ " || " + standardHour + ":"
 			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
 			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
-			+ '<a class="button is-light gigIt" value='+i+' data-index = "' + gigArray[i].eventId+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "' + gigArray[i].eventId+'">Info</a>'
+			+ '<a class="button is-light gigIt" data-index = "' + gigArray[i].eventId+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "' +i+'">Info</a>'
 			+ '</div><br>';
 		}
 		jobs.append(displayStyle);
@@ -219,11 +218,9 @@ $(document).ready(function(){
 		$(this).on("click", function(event){
 			event.preventDefault();
 			$("#gigModalInfo").empty();
-			var id = $(this).attr("value").val();
-			console.log("i: "+id);
-			console.log($(this).data('index')-1);
+			var gigNum = $(this).data('index');
 			var modalBody = $("#gigModalInfo");
-			modalBody.append(gigArray[$(this).data('index')-1].description);
+			modalBody.append(gigArray[gigNum].description);
 			$("#gigInfo").fadeToggle("fast, linear");
 
 		});
