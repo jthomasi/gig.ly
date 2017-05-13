@@ -2,6 +2,10 @@
 	text-align: center;
 }
 
+input:focus {
+	border-color:black !important;
+}
+
 .index-button {
 background-color: #536599;
 color: white;
@@ -18,11 +22,8 @@ color: white;
 	color: black;
 }
 
-
-
 .main-buttons {
 	margin-top: 50px;
-
 }
 
 .submitKey {
@@ -33,21 +34,21 @@ color: white;
 	display: inline-block !important;
 }
 
+
 .submit-key {
 	background-color:#52AC66;
 	color:white;
 }
 
-.submit-key:hover{
+.main-buttons button:hover button:focus {
 	color:white !important;
 	border-color:black;
 }
 
-.main-buttons button:hover {
-	color:white !important;
-	border-color:black;
+button:focus {
+	color:white;
+	border-color:black !important;
 }
-
 
 #worker-banner {
 	padding-top:50px;
