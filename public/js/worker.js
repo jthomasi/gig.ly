@@ -1,7 +1,3 @@
-// var accountSid = 'AC46bd7703d82e06f7b182c310775accc5';
-// var authToken = '186724f2393bb53c134bc974b483d1b2';
-// var client = require('twilio')(accountSid, authToken);
-
 $(document).ready(function(){
 
 	// var gigArray  = [
@@ -74,6 +70,10 @@ $(document).ready(function(){
 
 	$(".closeInfo").click(function(){
 		$("#gigInfo").fadeToggle("fast", "linear");
+	});
+
+	$(".glyphicon-home").click(function(){
+		window.location.href = "/";
 	});
 
 	function gigAvailability () {
@@ -166,31 +166,47 @@ $(document).ready(function(){
 
 	$("#confirmGig").on("click", function(ev){
 		ev.preventDefault();
-		var gigNumber = +$("#worker-gig").val();
+		var gigNumber = $("#worker-gig").val();
 		var workerName = $("#workerName").val().trim();
 		var workerNumber = $("#workerNumber").val().trim();
 		var workerEmail = $("#workerEmail").val().trim();
 		console.log(workerName);
-		console.log(gigArray[gigNumber].title);
+		//console.log(gigArray[gigNumber].title);
 		// gigArray[gigNumber].gigTaken = false;
-		// client.messages.create({
-		// 	to: "+16502917670",
-		// 	from: "+16506515374",
-		// 	body: "Hi there, " + workerName + " would like to work your gig: " + gigArray[gigNumber].title + ". Their number is " + workerNumber + " and their email is " + workerEmail + ".",
-		// 	mediaUrl: "http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg",
-		// 	}, function(err, message){
-		// 		console.log(message);
-		// });
+
+		// var textObj = {
+		// 	name: workerName,
+		// 	phone: workerNumber,
+		// 	email: workerEmail
+		// };
+
+		// function sendText(obj){
+		// 	$.ajax({
+		//         method: "POST",
+		//         url: "/api/notifyAdmin",
+		//         data: obj,
+		//         success: function(data) {
+	 //                //show content
+	 //                console.log("Success! "+data);
+	 //            },
+	 //            error: function(jqXHR, textStatus, err) {
+	 //                //show error message
+	 //                alert('text status '+textStatus+', err '+err)
+	 //            }
+	 //        });
+		// };
 
 		$.ajax({
 		    method: "PUT",
 		    url: "/api/adminEvents/" + gigNumber,
 		}).done(function(data) {
+			sendText(textObj);
 			console.log(gigId + " gigId")
 			window.location.href = "/worker/" + id;
-		    });
+			sendText(textObj);
+		});
 		$("#gigIt").fadeToggle("fast, linear");
-	})
+	});
 
 	$('.gigInfo').each(function(){
 		$(this).on("click", function(event){
@@ -199,8 +215,8 @@ $(document).ready(function(){
 			var modalBody = $("#gigModalInfo");
 			modalBody.append(gigArray[$(this).data('index')].description);
 			$("#gigInfo").fadeToggle("fast, linear");
-		})
-	})
+		});
+	});
 }
 
 }

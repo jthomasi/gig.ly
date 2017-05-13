@@ -8,7 +8,7 @@ $(document).ready(function(){
 		$(".loginAdmin").fadeToggle("fast", "linear");
 	});
 
-	$("#submitWorkersKey,.cancel-key").click(function(){
+	$("#submitKey,.cancel-key").click(function(){
 		$("#workersKeyModal").fadeToggle("fast", "linear");
 	});
 
@@ -82,38 +82,41 @@ $(document).ready(function(){
 
 		// null value check
 		if (key == ""){
-			var modalBody = $(".eventInfo");
-			var alertMsg = $("<p>");
-			alertMsg.text("Please enter a key.");
-			modalBody.append(alertMsg);
 			return;
 		}
 		else {
-			key.trim();
-			$.ajax({
-		        method: "GET",
-		        url: "/api/events/"+key,
-		        data: key
-		    })
-		    .done(function(data) {
-		        var modalBody = $(".eventInfo");
-				var gig = $("<ul>");
-				var eventTitle = $("<li>");
-				var eventTime = $("<li>");
-				var eventLocation = $("<li>");
-				var creator = $("<li>");
-
-				eventTitle.text(data[0].name);
-				eventTime.text("When: "+data[0].event_date);
-				eventLocation.text("Where: "+data[0].location);
-				creator.text("Created By: "+data[0].Admin.name);
-
-				gig.append(eventTitle,eventTime,eventLocation,creator);
-
-				modalBody.append(gig);
-
-		    });
+			window.location.href = "/worker/" + key;
 		}
+
+		// if (key == ""){
+		// 	return;
+		// }
+		// else {
+		// 	key.trim();
+		// 	$.ajax({
+		//         method: "GET",
+		//         url: "/api/events/"+key,
+		//         data: key
+		//     })
+		//     .done(function(data) {
+		//         var modalBody = $(".eventInfo");
+		// 		var gig = $("<ul>");
+		// 		var eventTitle = $("<li>");
+		// 		var eventTime = $("<li>");
+		// 		var eventLocation = $("<li>");
+		// 		var creator = $("<li>");
+
+		// 		eventTitle.text(data[0].name);
+		// 		eventTime.text("When: "+data[0].event_date);
+		// 		eventLocation.text("Where: "+data[0].location);
+		// 		creator.text("Created By: "+data[0].Admin.name);
+
+		// 		gig.append(eventTitle,eventTime,eventLocation,creator);
+
+		// 		modalBody.append(gig);
+
+		//     });
+		// }
 	});
 
 	function validatePassword(data, loginPassword) {

@@ -26,30 +26,35 @@ $(document).ready(function(){
         }
 	});
 
+	var gigArray = [];
+	var gigInfo = [];
+
 	//example array that would be in a DB
 	//will need to use either MySQL or
 	//local storage to test
-	var gigArray  = [
-		        {
-		        	title: "Test Gig",
-					start: '2017-05-05T02:30:00',
-					description: "Location: Austin, TX | Duration: 2 hours | Description: A fun little meet up for singles!"
-		        }
-		    ]
-	var gigInfo = [
+	// var gigArray  = [
+	// 	        {
+	// 	        	title: "Test Gig",
+	// 				start: '2017-05-05T02:30:00',
+	// 				description: "Location: Austin, TX | Duration: 2 hours | Description: A fun little meet up for singles!"
+	// 	        }
+	// 	    ]
+	// var gigInfo = [
 
-		{
-			title: "Test Gig",
-			location: "Austin,TX",
-			duration: "2 Hours",
-			description: "A fun place to meet up for singles!"
-		}
+	// 	{
+	// 		title: "Test Gig",
+	// 		location: "Austin,TX",
+	// 		duration: "2 Hours",
+	// 		description: "A fun place to meet up for singles!"
+	// 	}
 
-	];		    
+	// ];		    
 	var url = window.location.href;
 	var array = url.split('/');
 	console.log(array);
 	var id = array[4];
+
+	$("#adminKey").text("Admin Key: "+id);
 
 	$.ajax({
 	    method: "GET",
@@ -60,7 +65,7 @@ $(document).ready(function(){
 			for(var i=0; i< data.length; i++) {
 				var eventTitle = data[i].name;
 				var eventStart = data[i].start;
-				var eventDescription = data[i].location + " | ";
+				var eventDescription = "Where: "+data[i].location + " | For: ";
 				eventDescription += data[i].duration + " | " ;
 				eventDescription += data[i].details;
 				var singleEvent = {
@@ -350,9 +355,9 @@ $(document).ready(function(){
 		var eventDescription = $("<li>");
 
 		eventTitle.text(title);
-		eventTime.text(time);
-		eventLocation.text(location);
-		eventDuration.text(duration);
+		eventTime.text("When: "+time);
+		eventLocation.text("Where: "+location);
+		eventDuration.text("For: "+duration);
 		eventDescription.text(description);
 
 		gig.append(eventTitle,eventTime,eventLocation,eventDuration,eventDescription);
