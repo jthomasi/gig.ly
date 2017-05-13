@@ -72,7 +72,7 @@ $(document).ready(function(){
 		$("#gigInfo").fadeToggle("fast", "linear");
 	});
 
-	$(".glyphicon-home").click(function(){
+	$(".button-home").click(function(){
 		window.location.href = "/";
 	});
 
@@ -80,7 +80,7 @@ $(document).ready(function(){
 
 	//if there are no gigs scheduled
 	if (gigArray.length < 1) {
-		jobs.append('<div class = "notification is-warning">Your gig employer has not scheduled any gigs!</div>');
+		jobs.append('<div class = "notification is-fullwidth">This user has not scheduled any gigs :( </div>');
 	}
 
 	else {
@@ -119,7 +119,7 @@ $(document).ready(function(){
 
 		//append all data from gigArray onto html page
 		if (gigArray[i].gigTaken === true) {
-			displayStyle = '<div class = "notification is-warning">' + gigId + ". "
+			displayStyle = '<div class = "notification is-info">' + gigId + ". "
 			+ gigArray[i].title + " || "
 			+ gigArray[i].location + "<br>"
 			+ gigArray[i].start[5] + gigArray[i].start[6] + " / "

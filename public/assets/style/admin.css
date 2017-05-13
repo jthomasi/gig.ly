@@ -2,11 +2,16 @@ html {
 	background-color: #D9E0F2;
 }
 
-#gigButt {
+#gigButt,#logoutBtn {
 	position:relative;
 	float:right;
 	margin-right:25px;
-	margin-bottom:25px;
+	margin-bottom:5px;
+}
+
+#adminKey {
+	float:right;
+	margin-right:50px
 }
 
 #calendar {

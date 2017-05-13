@@ -51,7 +51,12 @@ button:focus {
 }
 
 #worker-banner {
-	padding-top:50px;
 	color: black;
+	background-color: #D9E0F2;
+	text-align:center;
+}
+
+.button-home {
+	float: left;
 }
 
