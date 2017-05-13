@@ -200,10 +200,9 @@ $(document).ready(function(){
 		    method: "PUT",
 		    url: "/api/adminEvents/" + gigNumber,
 		}).done(function(data) {
-			sendText(textObj);
+			// sendText(textObj);
 			console.log(gigId + " gigId")
 			window.location.href = "/worker/" + id;
-			sendText(textObj);
 		});
 		$("#gigIt").fadeToggle("fast, linear");
 	});
