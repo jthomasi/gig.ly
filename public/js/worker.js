@@ -141,7 +141,7 @@ $(document).ready(function(){
 			+ " || " + standardHour + ":"
 			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
 			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
-			+ '<a class="button is-light gigIt" data-index = "' + gigArray[i].eventId+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "' + gigArray[i].eventId+'">Info</a>'
+			+ '<a class="button is-light gigIt" data-index = "' + gigArray[i].eventId+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "' +i+'">Info</a>'
 			+ '</div><br>';
 		}
 		jobs.append(displayStyle);
@@ -212,7 +212,8 @@ $(document).ready(function(){
 			event.preventDefault();
 			$("#gigModalInfo").empty();
 			var modalBody = $("#gigModalInfo");
-			modalBody.append(gigArray[$(this).data('index')].description);
+			var gigNum = $(this).data('index');
+			modalBody.append(gigArray[gigNum].description);
 			$("#gigInfo").fadeToggle("fast, linear");
 		});
 	});
