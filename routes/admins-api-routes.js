@@ -1,4 +1,7 @@
 var db = require("../models");
+// var accountSid = 'AC46bd7703d82e06f7b182c310775accc5';
+// var authToken = '186724f2393bb53c134bc974b483d1b2';
+// var client = require('twilio')(accountSid, authToken);
 
 
 // Routes
@@ -50,4 +53,20 @@ module.exports = function(app) {
       res.json(dbAdmin);
     });
   });
+
+  // app.post("/admin/notify/", function(req, res) {
+        
+  //     client.messages.create({
+  //      to: "+16502917670",
+  //      from: "+16506515374",
+  //      body: "Hi there, ",
+  //      mediaUrl: "http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg",
+  //      }, function(err, message){
+  //        console.log(message);
+  //     });
+      
+  //   });
+
+
+ // + workerName + " would like to work your gig: " + gigArray[gigNumber].title + ". Their number is " + workerNumber + " and their email is " + workerEmail + "."
 };

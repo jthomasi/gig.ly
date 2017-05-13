@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 
 	// var gigArray  = [
@@ -47,6 +48,7 @@ $(document).ready(function(){
 			for(var i=0; i< data.length; i++) {
 
 				var singleEvent = {
+					id: i,
 					eventId: data[i].id,
 					title: data[i].name,
 					start: data[i].start,
@@ -141,7 +143,7 @@ $(document).ready(function(){
 			+ " || " + standardHour + ":"
 			+ gigArray[i].start[14] + gigArray[i].start[15] + noon + "<br>"
 			+ "This gig is approximately " + gigArray[i].duration + " hours long. <br>"
-			+ '<a class="button is-light gigIt" data-index = "' + gigArray[i].eventId+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "' + gigArray[i].eventId+'">Info</a>'
+			+ '<a class="button is-light gigIt" value='+i+' data-index = "' + gigArray[i].eventId+'">Gig it!</a>  <a class="button is-info gigInfo" data-index = "' + gigArray[i].eventId+'">Info</a>'
 			+ '</div><br>';
 		}
 		jobs.append(displayStyle);
@@ -170,37 +172,43 @@ $(document).ready(function(){
 		var workerName = $("#workerName").val().trim();
 		var workerNumber = $("#workerNumber").val().trim();
 		var workerEmail = $("#workerEmail").val().trim();
-		console.log(workerName);
+		//var gigTitle = gigArray[id].title;
+		//var gigTitle = gigArray[gigNumber].title;
+		
+		//console.log("Title: "+gigTitle);
+
 		//console.log(gigArray[gigNumber].title);
 		// gigArray[gigNumber].gigTaken = false;
 
-		// var textObj = {
-		// 	name: workerName,
-		// 	phone: workerNumber,
-		// 	email: workerEmail
-		// };
+		var textObj = {
+			name: workerName,
+			phone: workerNumber,
+			email: workerEmail
+		};
+		console.log(textObj);
+		sendText(textObj);
+		function sendText(obj){
 
-		// function sendText(obj){
-		// 	$.ajax({
-		//         method: "POST",
-		//         url: "/api/notifyAdmin",
-		//         data: obj,
-		//         success: function(data) {
-	 //                //show content
-	 //                console.log("Success! "+data);
-	 //            },
-	 //            error: function(jqXHR, textStatus, err) {
-	 //                //show error message
-	 //                alert('text status '+textStatus+', err '+err)
-	 //            }
-	 //        });
-		// };
+			$.ajax({
+		        method: "POST",
+		        url: "/notify/admin",
+		        data: textObj,
+		        success: function(data) {
+	                //show content
+	                console.log("Success! "+data);
+	            },
+	            error: function(jqXHR, textStatus, err) {
+	                //show error message
+	                console.log('text status '+textStatus+', err '+err);
+	            }
+	        });
+			
+		};
 
 		$.ajax({
 		    method: "PUT",
 		    url: "/api/adminEvents/" + gigNumber,
 		}).done(function(data) {
-			// sendText(textObj);
 			console.log(gigId + " gigId")
 			window.location.href = "/worker/" + id;
 		});
@@ -211,9 +219,13 @@ $(document).ready(function(){
 		$(this).on("click", function(event){
 			event.preventDefault();
 			$("#gigModalInfo").empty();
+			var id = $(this).attr("value").val();
+			console.log("i: "+id);
+			console.log($(this).data('index')-1);
 			var modalBody = $("#gigModalInfo");
-			modalBody.append(gigArray[$(this).data('index')].description);
+			modalBody.append(gigArray[$(this).data('index')-1].description);
 			$("#gigInfo").fadeToggle("fast, linear");
+
 		});
 	});
 }

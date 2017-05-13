@@ -1,7 +1,7 @@
 var db = require("../models");
 var path = require("path");
 
-// Routes
+//Routes
 // =============================================================
 module.exports = function(app) {
 
@@ -46,6 +46,5 @@ module.exports = function(app) {
     	});
   	});
 
-
-
+  
 };
