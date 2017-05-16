@@ -29,26 +29,6 @@ $(document).ready(function(){
 	var gigArray = [];
 	var gigInfo = [];
 
-	//example array that would be in a DB
-	//will need to use either MySQL or
-	//local storage to test
-	// var gigArray  = [
-	// 	        {
-	// 	        	title: "Test Gig",
-	// 				start: '2017-05-05T02:30:00',
-	// 				description: "Location: Austin, TX | Duration: 2 hours | Description: A fun little meet up for singles!"
-	// 	        }
-	// 	    ]
-	// var gigInfo = [
-
-	// 	{
-	// 		title: "Test Gig",
-	// 		location: "Austin,TX",
-	// 		duration: "2 Hours",
-	// 		description: "A fun place to meet up for singles!"
-	// 	}
-
-	// ];		    
 	var url = window.location.href;
 	var array = url.split('/');
 	console.log(array);
@@ -95,10 +75,7 @@ $(document).ready(function(){
 
 	$("#logoutBtn").click(function(){
 		window.location.href = "/";
-	});
-	
-
-	// $('#calendar').fullCalendar( 'addEventSource', gigArray );	
+	});	
 
 	$(".gigButt").click(function(){
 		$(".createGig").fadeToggle("fast", "linear");
@@ -228,6 +205,7 @@ $(document).ready(function(){
 
 		//now we do the same thing with end time input box
 
+		// obj for mysql db
 		var newSqlGig = {
 			name: gigName,
 			start: startString,
@@ -237,25 +215,27 @@ $(document).ready(function(){
 			AdminId: id
 		};
 
+		// obj for fullcalender
 		var newGig = {
 			title: gigName,
 			start: startString,
 			description: gigDescription
-		}
+		};
+
+		// obj for modal display
 		var newInfo = {
 			title: gigName,
 			location: gigLocation,
 			duration: gigDuration,
 			description: gigText
-		}
+		};
+
+		// obj for events db
 		var newGig_db = {
 			name: gigName,
 			location: gigLocation,
 			event_date: startString
-		}
-
-
-
+		};
 
 		$.ajax({
 	        method: "POST",
@@ -273,52 +253,12 @@ $(document).ready(function(){
 	        window.location.href = "/admin/" + id;
 	    });
 
-
-		// {
-		// 	title: "Test Gig",
-		// 	location: "Austin,TX",
-		// 	duration: "2 Hours",
-		// 	description: "A fun place to meet up for singles!"
-		// }
-		console.log("new_gig");
-		console.log(newGig);
-		// gigArray.push(newGig);
-		// gigInfo.push(newInfo);
-
-		// var url = window.location.href;
-		// var array = url.split('/');
-		// var id = array[array.length-1];
-
-		console.log(id);
-
 		$('#calendar').fullCalendar( 'removeEventSources' );
 			//remove event sources because we we are pushing one object
 			//to an array and we will reload entire array of objects to
 			//calendar. W/o removing we will have duplicate events
 
 		$('#calendar').fullCalendar( 'addEventSource', gigArray );
-
-		// $.ajax({
-	 //        method: "POST",
-	 //        url: "/api/events/"+id,
-	 //        data: newGig_db
-	 //    })
-	 //    .done(function(newGig) {
-	 //        console.log(data);
-	 //        $("#gigName").val("");
-	 //        $("#gigLocation").val("");
-	 //        $("#duration").val("");
-	 //        $("#startTime").val("");
-	 //        $("#gigText").val("");
-
-	 //        $('#calendar').fullCalendar( 'removeEventSources' );
-		// 	//remove event sources because we we are pushing one object
-		// 	//to an array and we will reload entire array of objects to
-		// 	//calendar. W/o removing we will have duplicate events
-
-		// 	$('#calendar').fullCalendar( 'addEventSource', gigArray );
-
-	 //    });
 
 	});
 

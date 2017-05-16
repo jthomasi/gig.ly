@@ -6,14 +6,15 @@ module.exports = function(app){
 
 	app.post("/notify/admin", function(req, res) {
 
-      client.messages.create({
-       to: "+16502917670",
-       from: "+16506515374",
-       body: "Hi there, " + req.body.name + " would like to work a gig! Their number is " + req.body.phone + " and their email is " + req.body.email + ".",
-       mediaUrl: "http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg",
-       }, function(err, message){
-         console.log(message);
-      });
+        client.messages.create({
+            to: "+1"+req.body.aphone,
+            from: "+16506515374",
+            body: "Hi there, " + req.body.name + " would like to work a gig! Their number is " + req.body.wphone + " and their email is " + req.body.email + ".",
+            mediaUrl: "http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-5.jpg",
+            }, function(err, message){
+              console.log("sent");
+              res.json(message.body);
+        });
       
     });
 
