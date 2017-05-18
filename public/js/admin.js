@@ -31,7 +31,6 @@ $(document).ready(function(){
 
 	var url = window.location.href;
 	var array = url.split('/');
-	console.log(array);
 	var id = array[4];
 
 	$("#adminKey").text("Admin Key: "+id);
@@ -40,34 +39,29 @@ $(document).ready(function(){
 	    method: "GET",
 	    url: "/api/adminEvents/" + id,
 	}).done(function(data) {
-		console.log("get data from events api");
-		console.log(data);
-			for(var i=0; i< data.length; i++) {
-				var eventTitle = data[i].name;
-				var eventStart = data[i].start;
-				var eventDescription = "Where: "+data[i].location + " | For: ";
-				eventDescription += data[i].duration + " | " ;
-				eventDescription += data[i].details;
-				var singleEvent = {
-					title: eventTitle,
-					start: eventStart,
-					description: eventDescription
-				};
-				var singleGigInfo = {
-					title: eventTitle,
-					location: data[i].location,
-					duration: data[i].duration,
-					description: data[i].details
-				}
-				gigArray.push(singleEvent);
-				gigInfo.push(singleGigInfo)
+		for(var i=0; i< data.length; i++) {
+			var eventTitle = data[i].name;
+			var eventStart = data[i].start;
+			var eventDescription = "Where: "+data[i].location + " | For: ";
+			eventDescription += data[i].duration + " | " ;
+			eventDescription += data[i].details;
+			var singleEvent = {
+				title: eventTitle,
+				start: eventStart,
+				description: eventDescription
+			};
+			var singleGigInfo = {
+				title: eventTitle,
+				location: data[i].location,
+				duration: data[i].duration,
+				description: data[i].details
 			}
-	        // gigArray = data;
-	        $('#calendar').fullCalendar( 'addEventSource', gigArray );	
-	    });
-
-
-
+			gigArray.push(singleEvent);
+			gigInfo.push(singleGigInfo)
+		}
+        // gigArray = data;
+        $('#calendar').fullCalendar( 'addEventSource', gigArray );	
+    });
 
 	var url = window.location.href;
 	var array = url.split('/');

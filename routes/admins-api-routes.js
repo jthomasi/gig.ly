@@ -1,4 +1,6 @@
 var db = require("../models");
+// npm package for generating UUID's
+const uuidV4 = require('uuid/v4');
 
 // Routes
 // =============================================================
@@ -7,7 +9,7 @@ module.exports = function(app) {
 
   // POST route for adding a new admin
   app.post("/api/admin", function(req, res) {
-  	console.log(req.body);
+    req.body["id"] = uuidV4();
     db.Admin.create(req.body).then(function(dbAdmin) {
       res.json(dbAdmin);
       console.log("admin route "+dbAdmin);
