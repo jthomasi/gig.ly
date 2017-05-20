@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 	var currentAdminId;
+	new Clipboard(".copy-to-clipboard");
 
 	//initialize starting time for gig input box as a timepicker
 	$('#startTime').timepicker({ 'scrollDefault': 'now' });
@@ -33,7 +34,7 @@ $(document).ready(function(){
 	var array = url.split('/');
 	var id = array[4];
 
-	$("#adminKey").text("Admin Key: "+id);
+	$("#adminKey").text(id);
 
 	$.ajax({
 	    method: "GET",
@@ -77,6 +78,10 @@ $(document).ready(function(){
 
 	$(".closeGig").click(function(){
 		$("#eventModal").fadeToggle("fast", "linear");
+	});  
+
+	$(".copy-admin-key").click(function(){
+		$(".admin-keyholder").fadeToggle("fast", "linear");
 	});  
 
 	$("#createGig").on("click", function(event) {

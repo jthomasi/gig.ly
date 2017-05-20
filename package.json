@@ -22,6 +22,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "bulma": "^0.4.1",
+    "clipboard": "^1.6.1",
     "express": "^4.15.2",
     "method-override": "^2.3.8",
     "mysql": "^2.13.0",
