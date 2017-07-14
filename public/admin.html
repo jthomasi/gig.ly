@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<title>gig.ly - Admins</title>
 	
-<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 <link rtype="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
 	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -23,6 +22,7 @@
 	<script src='/assets/lib/moment.js'></script>
 	<script src='/assets/lib/timepicker.js'></script>
 	<script src='/assets/fullcalendar/fullcalendar.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.1/clipboard.min.js"></script>
 	<script>
   	$( function() {
     	$( "#datepicker" ).datepicker();
@@ -35,17 +35,44 @@
 <body>
 
 <div id="admin-banner">
-	<span class="title">Events</span><br>
+	<span class="title">Events    &#x1F389;</span><br>
 </div>
 <div id="admin-main">
-	<button class="button is-light logout" id = "logoutBtn">Logout</button>
+	<div class="button-stack block">
+		<button class="button is-light logout" id = "logoutBtn">Logout</button>
 	<button class="button is-primary gigButt" id = "gigButt">Create Gig</button>
+	<button class="button is-info copy-admin-key" id="copy-admin-key" >Admin Key</button>
+	</div>
 	<br>
 	<br>
-	<div id="adminKey"></div>
+
+<!--Admin Key Modal-->
+	<div class="modal admin-keyholder">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+	    	    <div class="modal-card-head">
+		            <h5 class="modal-card-title" >Your Admin Key</h5>
+		        </div>
+		        <div class="modal-card-body center-key">
+						<!-- Trigger -->
+<a class="icon copy-to-clipboard" data-clipboard-target="#adminKey">
+  <i class="fa fa-clipboard"></i>
+</a>
+						<!-- Target -->
+						<span id="key-label">
+						<span><b>Admin Key:</b> </span>
+					<span id="adminKey"></span>
+					</span>
+						</div>
+						<div class="modal-card-foot">
+		            	<button class="button copy-admin-key">Close</button>
+		        	</div>
+		        </div>
+		    </div>
+		</div>
 
 	<div class="modal createGig">
-	<div class="modal-background"></div>
+		<div class="modal-background"></div>
 	    <div class="modal-card">
 	    	    <div class="modal-card-head">
 		            <h5 class="modal-card-title" id="exampleModalLabel">Create a Gig!</h5>
