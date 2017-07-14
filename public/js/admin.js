@@ -103,7 +103,6 @@ $(document).ready(function(){
 	});  
 
 	$("#createGig").on("click", function(event) {
-		$(".createGig").fadeToggle("fast", "linear");
 		event.preventDefault();
 
 		//captures all data from front end
@@ -115,6 +114,13 @@ $(document).ready(function(){
 		var gigStart = $("#startTime");
 		var gigDuration = $("#duration").val().trim();
 		var gigText = $("#gigText").val().trim();
+
+		if (gigName === "" || gigLocation === "" || gigStart.val() === "" || gigDuration === "" || gigText === "") {
+			alert("You need to fill out all the fields!");
+		}
+
+		else {
+			$(".createGig").fadeToggle("fast", "linear");
 
 		//starts building string so fullcalendar can read our inputed gig time
 		var startString = '';
@@ -243,7 +249,7 @@ $(document).ready(function(){
 			$('#calendar').fullCalendar( 'removeEventSources' );
 			window.location.href = "/admin/" + urlKey;
 		});
-
+		}
 	});
 
 	$(document).on("click", ".fc-event-container", function() {
