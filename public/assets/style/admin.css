@@ -2,16 +2,25 @@ html {
 	background-color: #D9E0F2;
 }
 
-#gigButt,#logoutBtn {
-	position:relative;
+.button-stack {
 	float:right;
-	margin-right:25px;
-	margin-bottom:5px;
+	margin-right: 50px;
+}
+
+#gigButt,#logoutBtn,#copy-admin-key {
+	display:block;
+	margin-right: 10px;
+	margin-top:5px;
+	float:right;
 }
 
 #adminKey {
-	float:right;
-	margin-right:50px
+    position: relative;
+
+}
+
+#key-label {
+	margin-left:40px;
 }
 
 #calendar {
@@ -28,12 +37,23 @@ html {
 	padding-top:50px;
 	color: black;
 	position:relative;
-	text-align:center;
 }
 
 #admin-banner span {
 	position:relative;
 	bottom: 0;
    	right: 0;
+	left: 66px;
+}
+
+.copy-to-clipboard {
+	float:right;
+	margin-right: 30px;
+	position: relative;
+	left: -40px;
+}
+
+a.copy-to-clipboard {
+	color:#4a4a4a !important;
 }
 

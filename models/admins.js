@@ -1,5 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
   var Admin = sequelize.define("Admin", {
+    id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true,
+      validate: {
+        len: [1, 100]
+      }
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,7 +28,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull:false,
+      allowNull: false,
+      len: [1, 20]
+    },
+    urlKey: {
+      type: DataTypes.STRING,
+      allowNull: false,
       len: [1, 20]
     }
   },
