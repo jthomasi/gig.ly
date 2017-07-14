@@ -18,4 +18,16 @@ module.exports = function(app){
       
     });
 
+    app.post("/notify/admin/verify", function(req, res) {
+
+        client.outgoingCallerIds.create({
+            friendlyName: "gig.ly admin",
+            phoneNumber: "+1"+req.body.aphone
+        }, function(err, callerId) {
+            process.stdout.write(callerId.sid);
+            res.json(callerId);
+        });
+      
+    });
+
 };

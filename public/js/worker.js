@@ -119,10 +119,10 @@ $(document).ready(function(){
 		ev.preventDefault();
 		getNumber(id);
 
-		function getNumber(adminid) {
+		function getNumber(id) {
 			$.ajax({
 		        method: "GET",
-		        url: "/api/admin/"+adminid,
+		        url: "/api/admin/worker/"+id,
 		        success: function(data) {
 	                //build obj
 	                var gigNumber = $("#worker-gig").val();

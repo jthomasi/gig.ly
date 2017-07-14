@@ -42,19 +42,26 @@ $(document).ready(function(){
 
 		console.log(newAdmin);
 
-		$.ajax({
-	        method: "POST",
-	        url: "/api/admin",
-	        data: newAdmin
-	    })
-	    .done(function(data) {
-	        console.log(data);
-	        $("#newAdminName").val("");
-	        $("#newAdminEmail").val("");
-	        $("#newAdminPhone").val("");
-	        $("#newAdminPassword").val("");
-	        window.location.href = "/admin/" + data.id;
-	    });
+		// $.ajax({
+		// 	method: "POST",
+		// 	url: "/notify/admin/verify",
+		// 	data: newAdmin
+		// }).done(function(data1) {
+
+			$.ajax({
+		        method: "POST",
+		        url: "/api/admin",
+		        data: newAdmin
+		    }).done(function(data2) {
+		        console.log(data2);
+		        $("#newAdminName").val("");
+		        $("#newAdminEmail").val("");
+		        $("#newAdminPhone").val("");
+		        $("#newAdminPassword").val("");
+		        window.location.href = "/admin/" + data2.urlKey;
+		    });
+
+		// });
 
 	});
 
@@ -116,7 +123,7 @@ $(document).ready(function(){
 		console.log(loginPassword);
     	if (data.password === loginPassword) {
     		
-    		window.location.href = "/admin/" + data.id;
+    		window.location.href = "/admin/" + data.urlKey;
     	} else {
     		$("#validationError").append("<div>Invalid username or password</div>");
     		$("#adminLoginPassword").addClass("is-danger");
